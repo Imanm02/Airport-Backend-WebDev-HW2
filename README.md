@@ -2,6 +2,8 @@
 Web Development Course HW2
 
 #todo tasks:
-adding handleLogin
-adding gRPC
-completing http.HandleFunc
+##adding handleLogin
+##adding handleLogin
+##adding UserInfo
+##adding gRPC
+##completing http.HandleFunc
