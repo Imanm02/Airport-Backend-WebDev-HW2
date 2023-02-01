@@ -7,6 +7,11 @@
 const app = require('../app');
 const debug = require('debug')('express:server');
 const http = require('http');
+
+/**
+ * load environments vars
+ * */
+
 require('dotenv').config({path: __dirname + '/../.env'});
 
 
