@@ -1,0 +1,31 @@
+syntax = "proto3";
+
+package proto;
+
+message User {
+  int64 user_id = 1;
+  string email = 2;
+  string phone_number = 3;
+  bool gender = 4;
+  string first_name = 5;
+  string last_name = 6;
+}
+
+message Token {
+  string token = 1;
+}
+
+message UserData {
+  oneof response {
+    User user = 1;
+    string error = 2;
+  }
+}
+
+service AuthService {
+  rpc CheckToken(Token) returns (UserData);
+}
+
+
+
+
