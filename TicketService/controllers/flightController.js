@@ -9,18 +9,18 @@ async function getFlight(req, res) {
     }
 
     try {
-        const {origin, destination, departDate, returnDate, hasReturn} = req.query;
+        const {origin, destination, departureDate, returnDate, hasReturn} = req.query;
         if (hasReturn) {
-            const flight = await searchFlight(origin, destination, departDate);
+            const flight = await searchFlight(origin, destination, departureDate);
             const returnFlight = await searchFlight(destination, origin, returnDate);
             res.status(200).send({flight, returnFlight});
         } else {
-            const flight = await searchFlight(origin, destination, departDate);
+            const flight = await searchFlight(origin, destination, departureDate);
             res.status(200).send(flight);
         }
 
     } catch (err) {
-        res.status(500).send({message: 'Internal Server Error'});
+        res.status(500).send({message: err.message});
     }
 }
 

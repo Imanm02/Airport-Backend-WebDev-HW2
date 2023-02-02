@@ -1,24 +1,29 @@
 const {query} = require('express-validator');
 
 const middlewares = [
-    query('origin').notEmpty().withMessage("Origin is required"),
+    query('origin').notEmpty().withMessage("Origin is required").bail(),
 
-    query('destination').notEmpty().withMessage("Destination is required"),
+    query('destination').notEmpty().withMessage("Destination is required").bail(),
 
-    query('departDate').notEmpty().withMessage("Depart date is required")
-        .isDate().withMessage("is not date").withMessage("Depart date is not valid")
-        .matches(/^\d{4}-\d{2}-\d{2}$/).withMessage("wrong date format"),
+    query('departureDate').notEmpty().withMessage("Depart date is required").bail()
+        .isDate().withMessage("is not date").withMessage("Depart date must be date").bail()
+        .matches(/^\d{4}-\d{2}-\d{2}$/).withMessage("wrong date format").bail(),
 
-    query('returnDate').custom((value, {req}) => req.hasReturn = !!value)
-        .if((value, {req}) => req.hasReturn).isDate().withMessage("return date is not valid")
-        .matches(/^\d{4}-\d{2}-\d{2}$/).withMessage("wrong date format")
+    query('returnDate').custom((value, {req}) => {
+        req.hasReturn = value !== undefined;
+        return true;
+    })
+        .if(query('returnDate').exists()).isDate().withMessage("return date must be date").bail()
+
+        .matches(/^\d{4}-\d{2}-\d{2}$/).withMessage("wrong date format").bail()
+
         .custom((value, {req}) => {
             if (Date.parse(value) < Date.parse(req.query.departureDate)) {
                 throw new Error("return date before depart date");
             }
             console.log("return date after depart date");
             return true;
-        }),
+        }).bail(),
 ];
 
 module.exports = middlewares;
