@@ -7,13 +7,10 @@ async function searchFlight(origin, destination, date) {
     const client = await pool.connect();
     try {
         const result = await client.query(
-            'SELECT * FROM available_flights WHERE origin = $1 AND Destination = $2 AND data_trunc($3) = data_trunc(departure_local_time)',
+            "SELECT * FROM available_offers WHERE origin = $1 AND Destination = $2 AND $3 = DATE_TRUNC('day' ,departure_local_time)",
             [origin, destination, date]
         )
         return result.rows;
-    } catch (e) {
-        /*return error*/
-        return e.message;
     } finally {
         client.release();
     }
