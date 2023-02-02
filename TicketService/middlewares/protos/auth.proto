@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package proto;
 
-message User {
+message UserData {
   int64 user_id = 1;
   string email = 2;
   string phone_number = 3;
@@ -13,13 +13,6 @@ message User {
 
 message Token {
   string token = 1;
-}
-
-message UserData {
-  oneof response {
-    User user = 1;
-    string error = 2;
-  }
 }
 
 service AuthService {
