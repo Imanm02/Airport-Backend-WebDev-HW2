@@ -1,4 +1,9 @@
 #!/usr/bin/env node
+/**
+ * load environments vars
+ * */
+
+require('dotenv').config({path: __dirname + '/../.env'});
 
 /**
  * Module dependencies.
@@ -8,17 +13,11 @@ const app = require('../app');
 const debug = require('debug')('express:server');
 const http = require('http');
 
-/**
- * load environments vars
- * */
-
-require('dotenv').config({path: __dirname + '/../.env'});
-
 
 /**
  * Get port from environment and store in Express.
  */
-
+console.log(process.env.PORT, process.env.PG_USER, process.env.PG_PASSWORD);
 const port = normalizePort(process.env.PORT || '3000');
 app.set('port', port);
 
