@@ -1,3 +1,4 @@
+// export env vars
 const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
@@ -13,6 +14,6 @@ app.use(express.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/flights', flightsRouter);
+app.use(flightsRouter);
 
 module.exports = app;
