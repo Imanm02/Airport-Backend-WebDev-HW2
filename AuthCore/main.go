@@ -88,6 +88,48 @@ func handleRegister(w http.ResponseWriter, r *http.Request) {
 
 }
 
+func handleLogin(w http.ResponseWriter, r *http.Request) {
+	if r.Method != http.MethodPost {
+		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+		return
+	}
+
+	email := r.FormValue("email")
+	password := r.FormValue("password")
+
+	// Validate input
+	if email == "" || password == "" {
+		http.Error(w, "Invalid input", http.StatusBadRequest)
+		return
+	}
+
+	// Get the user from the database
+	var hashedPassword []byte
+	var username string
+	err := db.QueryRow("SELECT password, username FROM users WHERE email=$1", email).Scan(&hashedPassword, &username)
+	if err == sql.ErrNoRows {
+		http.Error(w, "User not found", http.StatusBadRequest)
+		return
+	} else if err != nil {
+		http.Error(w, "Error fetching user", http.StatusInternalServerError)
+		return
+	}
+
+	// Compare the passwords
+	err = bcrypt.CompareHashAndPassword(hashedPassword, []byte(password))
+	if err == bcrypt.ErrMismatchedHashAndPassword {
+		http.Error(w, "Incorrect password", http.StatusBadRequest)
+		return
+	} else if err != nil {
+		http.Error(w, "Error comparing password", http.StatusInternalServerError)
+		return
+	}
+
+	// Return success message
+	w.Write([]byte(fmt.Sprintf("Welcome, %s!", username)))
+}
+
+
 http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
   	r.ParseForm()
     if r.Method != http.MethodPost {
