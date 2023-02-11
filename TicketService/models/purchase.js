@@ -1,7 +1,7 @@
 const sequelize = require('../db')
 const {DataTypes} = require("sequelize");
 
-const Purchase = sequelize.define('Purchase', {
+const Purchase = sequelize.define('purchase', {
     corresponding_user_id: {  // ok
         type: DataTypes.INTEGER,
         allowNull: true,
@@ -53,5 +53,7 @@ const Purchase = sequelize.define('Purchase', {
     freezeTableName: true,
     timestamps: true
 });
+
+Purchase.sync()
 
 module.exports = Purchase

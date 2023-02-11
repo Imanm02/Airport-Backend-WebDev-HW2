@@ -14,10 +14,10 @@ const packageDefinition = protoLoader.loadSync(
     });
 
 const checkTokenProto = grpc.loadPackageDefinition(packageDefinition).AuthService;
-const client = new checkTokenProto(
-    'localhost:50051',
-    grpc.credentials.createInsecure()
-)
+// const client = new checkTokenProto(
+//     'localhost:50051',
+//     grpc.credentials.createInsecure()
+// )
 
 // checkToken middlewares
 function isAuth(req, res, next) {
@@ -33,6 +33,20 @@ function isAuth(req, res, next) {
     });
 }
 
+function dummyIsAuth(req, res, next) {
+    req.user = {
+        user_id: 1,
+        email: "john@gmail.com",
+        phone_number: "09123456789",
+        gender: true,
+        first_name: "John",
+        last_name: "Doe"
+    };
+
+    next();
+}
+
 module.exports = {
-    isAuth
+    isAuth,
+    dummyIsAuth
 };

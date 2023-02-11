@@ -1,15 +1,13 @@
 const express = require('express');
 const router = express.Router();
-// const Purchase = require('../db').Purchase
-// const UserAccount = require('../db').UserAccount
 const Purchase = require('../models/purchase')
-const UserAccount = require('../models/userAccount')
+// const UserAccount = require('../models/userAccount')
+const {dummyIsAuth} = require('../middlewares/auth');
 
 const axios = require('axios')
-router.post('/',async function (req, res, next) {
+router.post('/', dummyIsAuth, async function (req, res, next) {
     try {
         let clientHost = "http://localhost:8000/transaction/";
-        // console.log(req.body);
         const postData = req.body;
         const options = {
             method: 'POST',
@@ -25,10 +23,8 @@ router.post('/',async function (req, res, next) {
         }
 
         const response = await axios(options);
-        console.log("#############################################################")
-        // console.log(response.data);
         // save the log of uncompleted transaction with the related user data (id, first name, last name)
-        const buyer = await UserAccount.findByPk(postData["corresponding_user_id"]);
+        const buyer = req.user;
         const new_purchase = await Purchase.create({
             corresponding_user_id: postData["corresponding_user_id"],
             title: postData["title"],
@@ -37,8 +33,10 @@ router.post('/',async function (req, res, next) {
             flight_serial: postData["flight_serial"],
             offer_price: postData["offer_price"],
             offer_class: postData["offer_class"],
-            transaction_id: response.data["transaction_id"]
+            transaction_id: response.data.id
         });
+
+
 
         // console.log(response.data);
     } catch (e) {
