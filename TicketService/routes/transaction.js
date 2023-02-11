@@ -17,7 +17,7 @@ router.post('/', dummyIsAuth, async function (req, res, next) {
             url: clientHost,
             data: JSON.stringify({
                 amount: postData["offer_price"],
-                receipt_id: "123456789",
+                receipt_id: process.env.RECEIPT_ID,
                 callback: "http://localhost:3000/transactionResult"
             }),
         }
@@ -35,6 +35,9 @@ router.post('/', dummyIsAuth, async function (req, res, next) {
             offer_class: postData["offer_class"],
             transaction_id: response.data.id
         });
+
+        // redirect to bank payment page
+        res.redirect(process.env.BANK_URL + "/payment/" + response.data.id);
 
 
 
