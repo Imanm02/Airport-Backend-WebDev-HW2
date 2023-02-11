@@ -5,16 +5,28 @@ const Purchase = require('../models/purchase')
 // const Purchase = require('../db').Purchase
 
 router.get('/:transactionId/:resultId', async function (req, res, next) {
-    // console.log(req.params.resultId)
-    // console.log("poooof")
-    // console.log(req.params)
-
     // if result != 1
     // show adequate message
     // if result == 1
     // show success and save the transaction in purchase table
 
     let result = +req.params.resultId
+
+
+    try {
+        let record = await Purchase.findByPk(+req.params.transactionId);
+        console.log(record)
+        record.transaction_result = result;
+        await record.save();
+        // await Purchase.upsert({
+        //     transaction_id: +req.params.transactionId,
+        //     transaction_result: result,
+        // });
+    } catch (e) {
+        res.status(500).send({
+            message: "error in saving transaction result"
+        });
+    }
 
     if (result !== 1) {
 
@@ -32,15 +44,6 @@ router.get('/:transactionId/:resultId', async function (req, res, next) {
             res.send('transaction failed, Unknown Error');
         }
     } else {
-        try {
-            await Purchase.upsert({
-                transaction_id: req.params.transactionId,
-                transaction_result: result,
-            });
-        } catch (e) {
-            console.log(e)
-        }
-
         res.send('transaction successful');
     }
 

@@ -1,7 +1,7 @@
 const sequelize = require('../db')
 const {DataTypes} = require("sequelize");
 
-const Flight = sequelize.define('Flight', {
+const Flight = sequelize.define('flight', {
     flight_serial: {  // ok
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -48,5 +48,7 @@ const Flight = sequelize.define('Flight', {
     freezeTableName: true,
     timestamps: true
 });
+
+Flight.sync()
 
 module.exports = Flight

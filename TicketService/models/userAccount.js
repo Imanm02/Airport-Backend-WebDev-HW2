@@ -1,7 +1,7 @@
 const sequelize = require('../db')
 const {DataTypes} = require("sequelize");
 
-const UserAccount = sequelize.define('UserAccount', {
+const UserAccount = sequelize.define('user_account', {
     user_id: {  // ok
         type: DataTypes.INTEGER,
         primaryKey: true,
@@ -39,5 +39,6 @@ const UserAccount = sequelize.define('UserAccount', {
     timestamps: true
 });
 
+UserAccount.sync()
 
 module.exports = UserAccount
