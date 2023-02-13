@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 
 const flightsRouter = require('./routes/flights');
+const dashboardRouter = require('./routes/userDashboard');
 const transactionRouter = require('./routes/transaction');
 const transactionResultRouter = require('./routes/transactionResult');
 
@@ -19,7 +20,9 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/ticket', transactionRouter);
 app.use('/transactionResult', transactionResultRouter);
-// app.use(flightsRouter);
+app.use('/dashboard', dashboardRouter);
+
+app.use(flightsRouter)
 
 
 module.exports = app;
