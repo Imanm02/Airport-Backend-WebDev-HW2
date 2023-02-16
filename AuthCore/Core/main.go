@@ -10,19 +10,16 @@ import (
 )
 
 func main() {
-	// Create redis connection for OAuth
 	oauth2Redis, err := oauth2.NewStorageFromRedis(getRedisOptions())
 	if err != nil {
 		log.WithError(err).Fatalln("cannot connect to redis for oauth2")
 	}
 	oauth := oauth2.NewOauth2(oauth2Redis)
-	// Open database
 	db, err := database.NewPostgresDatabase(getDatabaseConnectionURL())
 	if err != nil {
 		log.WithError(err).Fatalln("cannot initialize database")
 	}
 	dbConnection := database.NewDatabase(db)
-	// Serve
 	go startHTTPServer(oauth, dbConnection)
 	go startGrpcServer(oauth, dbConnection)
 	select {}
@@ -38,7 +35,6 @@ func startHTTPServer(oauth oauth2.Oauth2, db database.Database) {
 	g.POST("/login", apiServer.LoginUser)
 	g.POST("/logout", apiServer.SignOutUser)
 	g.GET("/getuser", apiServer.RefreshToken)
-	// Done!
 	var err error
 	if os.Getenv("TLS_CERT") != "" && os.Getenv("TLS_KEY") != "" {
 		err = g.RunTLS(getServeData())
