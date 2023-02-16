@@ -36,7 +36,7 @@ func init() {
 	db.AutoMigrate(&User{})
 }
 
-func SignUp(c *gin.Context) {
+func (api *API) signup(c *gin.Context) {
 	username := c.PostForm("username")
 	password := c.PostForm("password")
 
@@ -55,7 +55,7 @@ func SignUp(c *gin.Context) {
 	c.JSON(201, gin.H{"message": "User created"})
 }
 
-func LogIn(c *gin.Context) {
+func (api *API) login(c *gin.Context) {
 	username := c.PostForm("username")
 	password := c.PostForm("password")
 
@@ -99,7 +99,7 @@ func LogIn(c *gin.Context) {
 	c.JSON(200, gin.H{"token": tokenString})
 }
 
-func SignOut(c *gin.Context) {
+func (api *API) logout(c *gin.Context) {
 	authorization := c.GetHeader("Authorization")
 	if authorization == "" || !strings.HasPrefix(authorization, "Bearer ") {
 		c.JSON(401, gin.H{"error": "Authorization header is required"})
@@ -134,7 +134,7 @@ func SignOut(c *gin.Context) {
 	c.JSON(200, gin.H{"message": "Token deleted"})
 }
 
-func GetUser(c *gin.Context) {
+func (api *API) getuser(c *gin.Context) {
 	authorization := c.GetHeader("Authorization")
 	if authorization == "" || !strings.HasPrefix(authorization, "Bearer ") {
 		c.JSON(401, gin.H{"error": "Authorization header is required"})
@@ -155,4 +155,12 @@ func GetUser(c *gin.Context) {
 
 	claims, ok := token.Claims.(jwt.MapClaims)
 	if !ok || !token.Valid {
+		return 0, errors.New("Cannot get claims from token")
+	}
+	userID, ok := claims["user_id"].(float64)
+	if !ok {
+		return 0, errors.New("Cannot get user ID from claims")
+	}
+	return int(userID), nil
+}
 		
