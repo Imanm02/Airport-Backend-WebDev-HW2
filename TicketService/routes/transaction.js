@@ -1,11 +1,13 @@
 const express = require('express');
 const router = express.Router();
 const Purchase = require('../models/purchase')
+const Flight = require('../models/flightModel')
 // const UserAccount = require('../models/userAccount')
 const {dummyIsAuth} = require('../middlewares/auth');
 const checkPostData = require('../middlewares/transactionMiddleware')
 const axios = require('axios')
 const {validationResult} = require("express-validator");
+const {where} = require("sequelize");
 
 
 router.post('/', dummyIsAuth, ...checkPostData,  async function (req, res, next) {
@@ -34,6 +36,7 @@ router.post('/', dummyIsAuth, ...checkPostData,  async function (req, res, next)
 
 
         const response = await axios(options);
+        const flight = await Flight.findOne({ where: { flight_id: postData["flight_id"] } });
         // save the log of uncompleted transaction with the related user data (id, first name, last name)
         const buyer = req.user;
         const new_purchase = await Purchase.create({
@@ -41,7 +44,7 @@ router.post('/', dummyIsAuth, ...checkPostData,  async function (req, res, next)
             title: postData["title"],
             first_name: buyer.first_name,
             last_name: buyer.last_name,
-            flight_serial: postData["flight_serial"],
+            flight_serial: flight.flight_serial,
             offer_price: postData["offer_price"],
             offer_class: postData["offer_class"],
             transaction_id: response.data.id
