@@ -1,16 +1,17 @@
 package main
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"strings"
 	"time"
 
+	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 	"github.com/go-redis/redis"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/postgres"
-	"github.com/dgrijalva/jwt-go"
 )
 
 var db *gorm.DB
@@ -86,8 +87,7 @@ func (api *API) login(c *gin.Context) {
 	client := redis.NewClient(&redis.Options{
 		Addr:     "localhost:6379",
 		Password: "",
-		DB
-		:       0,
+		DB:       0,
 	})
 
 	err = client.Set(fmt.Sprintf("token:%d", user.ID), tokenString, time.Hour*72).Err()
@@ -163,4 +163,3 @@ func (api *API) getuser(c *gin.Context) {
 	}
 	return int(userID), nil
 }
-		
