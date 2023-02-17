@@ -1,94 +1,158 @@
 package main
 
 import (
-	"database/sql"
 	"fmt"
 	"log"
-	"net/http"
+	"strings"
+	"time"
 
-	"golang.org/x/crypto/bcrypt"
-
-	_ "github.com/lib/pq"
+	"github.com/gin-gonic/gin"
+	"github.com/go-redis/redis"
+	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/dgrijalva/jwt-go"
 )
 
-const (
-	host     = "localhost"
-	port     = 5432
-	user     = "postgres"
-	password = "mysecretpassword"
-	dbname   = "mydb"
-)
+var db *gorm.DB
+var err error
 
-var db *sql.DB
+type User struct {
+	ID        uint   `gorm:"primary_key"`
+	Username  string `gorm:"not null"`
+	Password  string `gorm:"not null"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt *time.Time
+}
 
-func main() {
-	var err error
-	psqlInfo := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
-		host, port, user, password, dbname)
-	db, err = sql.Open("postgres", psqlInfo)
+func init() {
+	db, err = gorm.Open("postgres", "host=myhost port=myport user=gorm dbname=gorm password=mypassword")
 	if err != nil {
-		log.Fatalf("Error opening database: %v\n", err)
+		log.Fatalf("Error opening database: %v", err)
 	}
+
 	defer db.Close()
 
-	err = db.Ping()
-	if err != nil {
-		log.Fatalf("Error pinging database: %v\n", err)
-	}
-
-	http.HandleFunc("/register", handleRegister)
-	http.HandleFunc("/login", handleLogin)
-
-	log.Println("Starting server on :8080")
-	err = http.ListenAndServe(":8080", nil)
-	if err != nil {
-		log.Fatalf("Error starting server: %v\n", err)
-	}
+	db.AutoMigrate(&User{})
 }
 
-func handleRegister(w http.ResponseWriter, r *http.Request) {
-	r.ParseForm()
-	if r.Method != http.MethodPost {
-		http.Error(w, "Invalid request method", http.StatusMethodNotAllowed)
+func SignUp(c *gin.Context) {
+	username := c.PostForm("username")
+	password := c.PostForm("password")
+
+	if username == "" || password == "" {
+		c.JSON(400, gin.H{"error": "Username and password are required"})
 		return
 	}
 
-	username := r.FormValue("username")
-	email := r.FormValue("email")
-	password := r.FormValue("password")
-
-	// Validate input
-	if username == "" || email == "" || password == "" {
-		http.Error(w, "Invalid input", http.StatusBadRequest)
-		return
+	user := User{
+		Username: username,
+		Password: password,
 	}
 
-	// Check if the email already exists
-	var emailExists string
-	err := db.QueryRow("SELECT email FROM users WHERE email=$1", email).Scan(&emailExists)
-	if err == nil {
-		http.Error(w, "Email already exists", http.StatusBadRequest)
-		return
-	}
+	db.Create(&user)
 
-	// Hash the password
-	hashedPassword, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
-	if err != nil {
-		http.Error(w, "Error hashing password", http.StatusInternalServerError)
-		return
-	}
-
-	// Insert the new user into the database
-	_, err = db.Exec("INSERT INTO users (username, email, password) VALUES ($1, $2, $3)", username, email, hashedPassword)
-	if err != nil {
-		http.Error(w, "Error inserting user into database", http.StatusInternalServerError)
-		return
-	}
-	fmt.Fprintln(w, "User registered successfully!")
-
+	c.JSON(201, gin.H{"message": "User created"})
 }
 
-http.HandleFunc("/login", func(w http.ResponseWriter, r *http.Request) {
-  	r.ParseForm()
-    if r.Method != http.MethodPost {
-      http.Error(w, "Invalid request method", http
+func LogIn(c *gin.Context) {
+	username := c.PostForm("username")
+	password := c.PostForm("password")
+
+	if username == "" || password == "" {
+		c.JSON(400, gin.H{"error": "Username and password are required"})
+		return
+	}
+
+	var user User
+	db.Where("username = ?", username).First(&user)
+
+	if user.ID == 0 || user.Password != password {
+		c.JSON(401, gin.H{"error": "Username or password is incorrect"})
+		return
+	}
+
+	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
+		"userID": user.ID,
+		"exp":    time.Now().Add(time.Hour * 72).Unix(),
+	})
+
+	tokenString, err := token.SignedString([]byte("secret"))
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Error generating token"})
+		return
+	}
+
+	client := redis.NewClient(&redis.Options{
+		Addr:     "localhost:6379",
+		Password: "",
+		DB
+		:       0,
+	})
+
+	err = client.Set(fmt.Sprintf("token:%d", user.ID), tokenString, time.Hour*72).Err()
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Error storing token"})
+		return
+	}
+
+	c.JSON(200, gin.H{"token": tokenString})
+}
+
+func SignOut(c *gin.Context) {
+	authorization := c.GetHeader("Authorization")
+	if authorization == "" || !strings.HasPrefix(authorization, "Bearer ") {
+		c.JSON(401, gin.H{"error": "Authorization header is required"})
+		return
+	}
+
+	tokenString := strings.TrimPrefix(authorization, "Bearer ")
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+		}
+		return []byte("secret"), nil
+	})
+	if err != nil {
+		c.JSON(401, gin.H{"error": "Token is invalid"})
+		return
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !ok || !token.Valid {
+		c.JSON(401, gin.H{"error": "Token is invalid"})
+		return
+	}
+
+	userID := uint(claims["userID"].(float64))
+	err = client.Del(fmt.Sprintf("token:%d", userID)).Err()
+	if err != nil {
+		c.JSON(500, gin.H{"error": "Error deleting token"})
+		return
+	}
+
+	c.JSON(200, gin.H{"message": "Token deleted"})
+}
+
+func GetUser(c *gin.Context) {
+	authorization := c.GetHeader("Authorization")
+	if authorization == "" || !strings.HasPrefix(authorization, "Bearer ") {
+		c.JSON(401, gin.H{"error": "Authorization header is required"})
+		return
+	}
+
+	tokenString := strings.TrimPrefix(authorization, "Bearer ")
+	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
+		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
+			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+		}
+		return []byte("secret"), nil
+	})
+	if err != nil {
+		c.JSON(401, gin.H{"error": "Token is invalid"})
+		return
+	}
+
+	claims, ok := token.Claims.(jwt.MapClaims)
+	if !ok || !token.Valid {
+		
