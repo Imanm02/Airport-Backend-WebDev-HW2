@@ -2,9 +2,10 @@ package oauth2
 
 import (
 	"context"
-	"github.com/go-faster/errors"
-	"github.com/go-redis/redis/v8"
 	"time"
+
+	"github.com/go-faster/errors"
+	redis "github.com/go-redis/redis/v8"
 )
 
 type redisStorage struct {

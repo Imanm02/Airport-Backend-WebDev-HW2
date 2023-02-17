@@ -1,8 +1,9 @@
 package oauth2
 
 import (
-	"github.com/go-faster/errors"
 	"time"
+
+	"github.com/go-faster/errors"
 )
 
 var NotFound = errors.New("not found")

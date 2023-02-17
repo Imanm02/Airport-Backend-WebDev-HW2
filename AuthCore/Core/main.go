@@ -1,7 +1,9 @@
-package main
+package core
 
 import (
-	"AuthCore/api.go"
+	"Authcore/api"
+	"Authcore/pkg/oauth2"
+	"Authcore/pkg/proto"
 	"os"
 
 	"github.com/gin-gonic/gin"
