@@ -17,12 +17,12 @@ pool.on('error', (err) => {
 });
 
 // test connection
-pool.query('SELECT NOW()', (err) => {
-//     if err config wrong
-    if (err) {
-        console.log(err);
-        process.exit(-1);
-    }
-});
+// pool.query('SELECT NOW()', (err) => {
+// //     if err config wrong
+//     if (err) {
+//         console.log(err);
+//         process.exit(-1);
+//     }
+// });
 
 module.exports = pool;

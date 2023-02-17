@@ -22,30 +22,36 @@ router.get('/:transactionId/:resultId', async function (req, res, next) {
         //     transaction_id: +req.params.transactionId,
         //     transaction_result: result,
         // });
+        try {
+            if (result !== 1) {
+
+                // console.log(result)
+                if (result === 2) {
+                    res.send('transaction failed, Input Mismatch');
+                } else if (result === 3) {
+                    res.send('transaction failed, Expire');
+                } else if (result === 4) {
+                    res.send('transaction failed, No Credit');
+
+                } else if (result === 5) {
+                    res.send('transaction failed, Canceled');
+                } else {
+                    res.send('transaction failed, Unknown Error');
+                }
+            } else {
+                res.send('transaction successful');
+            }
+        } catch (error) {
+            res.send("not able to give the correct response")
+        }
+
     } catch (e) {
         res.status(500).send({
             message: "error in saving transaction result"
         });
     }
 
-    if (result !== 1) {
 
-        // console.log(result)
-        if (result === 2) {
-            res.send('transaction failed, Input Mismatch');
-        } else if (result === 3) {
-            res.send('transaction failed, Expire');
-        } else if (result === 4) {
-            res.send('transaction failed, No Credit');
-
-        } else if (result === 5) {
-            res.send('transaction failed, Canceled');
-        } else {
-            res.send('transaction failed, Unknown Error');
-        }
-    } else {
-        res.send('transaction successful');
-    }
 
 
 })

@@ -3,11 +3,20 @@ const router = express.Router();
 const Purchase = require('../models/purchase')
 // const UserAccount = require('../models/userAccount')
 const {dummyIsAuth} = require('../middlewares/auth');
-
+const checkPostData = require('../middlewares/transactionMiddleware')
 const axios = require('axios')
-router.post('/', dummyIsAuth, async function (req, res, next) {
+const {validationResult} = require("express-validator");
+
+
+router.post('/', dummyIsAuth, ...checkPostData,  async function (req, res, next) {
+    const errors = validationResult(req);
+    /* send errors of middlewares */
+    if (!errors.isEmpty()) {
+        return res.status(400).json({errors: errors.array()});
+    }
+
     try {
-        let clientHost = "http://localhost:8000/transaction/";
+        let clientHost = `http://${process.env.BANK_URL}/transaction/`;
         const postData = req.body;
         const options = {
             method: 'POST',
@@ -18,9 +27,11 @@ router.post('/', dummyIsAuth, async function (req, res, next) {
             data: JSON.stringify({
                 amount: postData["offer_price"],
                 receipt_id: process.env.RECEIPT_ID,
-                callback: "http://localhost:3000/transactionResult"
+                callback: `http://${process.env.HOST}:${process.env.PORT}/transactionResult`
             }),
         }
+
+
 
         const response = await axios(options);
         // save the log of uncompleted transaction with the related user data (id, first name, last name)
