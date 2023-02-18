@@ -1,29 +1,31 @@
 package api
 
-type errorResponse struct {
-	Error string `json:"error"`
+type SignUpRequest struct {
+	Email       string `json:"email"`
+	PhoneNumber string `json:"phone_number"`
+	Gender      string `json:"gender"`
+	FirstName   string `json:"first_name"`
+	LastName    string `json:"last_name"`
+	Password    string `json:"password"`
 }
 
-type signupRequest struct {
-	Email      string `form:"email" binding:"required"`
-	Phone      string `form:"phone" binding:"required"`
-	Password   string `form:"password" binding:"required"`
-	FirstName  string `form:"first_name" binding:"required"`
-	SecondName string `form:"second_name" binding:"required"`
-	Gender     string `form:"gender" binding:"required"`
+type SignInRequest struct {
+	Email       string `json:"email"`
+	PhoneNumber string `json:"phone_number"`
+	Password    string `json:"password"`
 }
 
-type refreshTokenRequest struct {
-	RefreshToken string `query:"refresh_token" json:"refresh_token" form:"refresh_token" binding:"required"`
+type UserInfoResponse struct {
+	UserID      int64  `json:"user_id"`
+	Email       string `json:"email"`
+	PhoneNumber string `json:"phone_number"`
+	Gender      string `json:"gender"`
+	FirstName   string `json:"first_name"`
+	LastName    string `json:"last_name"`
 }
 
-type loginRequest struct {
-	Email    string `form:"email" binding:"required"`
-	Password string `form:"password" binding:"required"`
-}
-
-type loginResponse struct {
-	AccessToken  string `json:"access_token"`
-	RefreshToken string `json:"refresh_token"`
-	TTL          int64  `json:"ttl"` // in seconds
+type UserClaim struct {
+	UserID      int64  `json:"user_id"`
+	Email       string `json:"email"`
+	PhoneNumber string `json:"phone_number"`
 }

@@ -1,165 +1,262 @@
 package api
 
 import (
-	"errors"
+	"encoding/base64"
 	"fmt"
-	"log"
-	"strings"
+	"regexp"
 	"time"
 
-	"github.com/dgrijalva/jwt-go"
+	"AuthCore/storage"
+	"crypto/sha256"
+
 	"github.com/gin-gonic/gin"
-	"github.com/go-redis/redis"
-	"github.com/jinzhu/gorm"
-	_ "github.com/jinzhu/gorm/dialects/postgres"
+	"github.com/kataras/jwt"
+	"github.com/redis/go-redis/v9"
+	"gorm.io/gorm"
 )
 
 var db *gorm.DB
-var err error
+var cache *redis.Client
+var sharedKey = []byte("sercrethatmaycontainch@r$32chars")
 
-type User struct {
-	ID        uint   `gorm:"primary_key"`
-	Username  string `gorm:"not null"`
-	Password  string `gorm:"not null"`
-	CreatedAt time.Time
-	UpdatedAt time.Time
-	DeletedAt *time.Time
+func InitApis(r *gin.Engine, pdb *gorm.DB, rdb *redis.Client) {
+	r.POST("/signup", signup)
+	r.POST("/signin", signin)
+	r.POST("/signout", signout)
+	r.POST("/userinfo", userInfo)
+	db = pdb
+	cache = rdb
 }
 
-func init() {
-	db, err = gorm.Open("postgres", "host=myhost port=myport user=gorm dbname=gorm password=mypassword")
+func signup(c *gin.Context) {
+	var req SignUpRequest
+	err := c.BindJSON(&req)
 	if err != nil {
-		log.Fatalf("Error opening database: %v", err)
-	}
-
-	defer db.Close()
-
-	db.AutoMigrate(&User{})
-}
-
-func (api *API) signup(c *gin.Context) {
-	username := c.PostForm("username")
-	password := c.PostForm("password")
-
-	if username == "" || password == "" {
-		c.JSON(400, gin.H{"error": "Username and password are required"})
+		c.JSON(400, gin.H{
+			"error": "incomplete request",
+		})
 		return
 	}
-
-	user := User{
-		Username: username,
-		Password: password,
-	}
-
-	db.Create(&user)
-
-	c.JSON(201, gin.H{"message": "User created"})
-}
-
-func (api *API) login(c *gin.Context) {
-	username := c.PostForm("username")
-	password := c.PostForm("password")
-
-	if username == "" || password == "" {
-		c.JSON(400, gin.H{"error": "Username and password are required"})
+	if req.Gender != "M" && req.Gender != "F" {
+		c.JSON(400, gin.H{
+			"error": "gender invalid",
+		})
 		return
 	}
-
-	var user User
-	db.Where("username = ?", username).First(&user)
-
-	if user.ID == 0 || user.Password != password {
-		c.JSON(401, gin.H{"error": "Username or password is incorrect"})
+	if match, _ := regexp.MatchString("\\d{11}", req.PhoneNumber); !match {
+		c.JSON(400, gin.H{
+			"error": "phone number invalid " + req.PhoneNumber,
+		})
 		return
 	}
-
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"userID": user.ID,
-		"exp":    time.Now().Add(time.Hour * 72).Unix(),
+	if match, _ := regexp.MatchString("[-a-zA-Z0-9_\\.]+@\\w+\\.com", req.Email); !match {
+		c.JSON(400, gin.H{
+			"error": "email invalid",
+		})
+		return
+	}
+	if len(req.Password) < 4 {
+		c.JSON(400, gin.H{
+			"error": "password too short",
+		})
+		return
+	}
+	h := sha256.New()
+	h.Write([]byte(req.Password))
+	user := storage.User{
+		Email:        req.Email,
+		PhoneNumber:  req.PhoneNumber,
+		Gender:       req.Gender,
+		FirstName:    req.FirstName,
+		LastName:     req.LastName,
+		PasswordHash: base64.URLEncoding.EncodeToString(h.Sum(nil)),
+	}
+	tx := db.WithContext(c)
+	if err := tx.Table("user_account").Create(&user).Error; err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(200, UserInfoResponse{
+		UserID:      user.UserID,
+		Email:       user.Email,
+		PhoneNumber: user.PhoneNumber,
+		Gender:      user.Gender,
+		FirstName:   user.FirstName,
+		LastName:    user.LastName,
 	})
-
-	tokenString, err := token.SignedString([]byte("secret"))
-	if err != nil {
-		c.JSON(500, gin.H{"error": "Error generating token"})
-		return
-	}
-
-	client := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
-		Password: "",
-		DB:       0,
-	})
-
-	err = client.Set(fmt.Sprintf("token:%d", user.ID), tokenString, time.Hour*72).Err()
-	if err != nil {
-		c.JSON(500, gin.H{"error": "Error storing token"})
-		return
-	}
-
-	c.JSON(200, gin.H{"token": tokenString})
 }
 
-func (api *API) logout(c *gin.Context) {
-	authorization := c.GetHeader("Authorization")
-	if authorization == "" || !strings.HasPrefix(authorization, "Bearer ") {
-		c.JSON(401, gin.H{"error": "Authorization header is required"})
+func signin(c *gin.Context) {
+	var req SignInRequest
+	err := c.BindJSON(&req)
+	if err != nil {
+		c.JSON(400, gin.H{
+			"error": "incomplete request",
+		})
 		return
 	}
-
-	tokenString := strings.TrimPrefix(authorization, "Bearer ")
-	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+	if req.Email == "" && req.PhoneNumber == "" {
+		c.JSON(400, gin.H{
+			"error": "incomplete request",
+		})
+		return
+	}
+	h := sha256.New()
+	h.Write([]byte(req.Password))
+	hash := base64.URLEncoding.EncodeToString(h.Sum(nil))
+	var user storage.User
+	tx := db.WithContext(c)
+	if req.Email != "" {
+		if err := tx.Table("user_account").Where("email = ? AND password_hash = ?", req.Email, hash).Take(&user).Error; err != nil {
+			c.JSON(401, gin.H{
+				"error": err.Error(),
+			})
+			return
 		}
-		return []byte("secret"), nil
+	} else {
+		if err := tx.Table("user_account").Where("phone_number = ? AND password_hash = ?", req.PhoneNumber, hash).Take(&user).Error; err != nil {
+			c.JSON(401, gin.H{
+				"error": err.Error(),
+			})
+			return
+		}
+	}
+
+	myClaims := UserClaim{
+		UserID:      user.UserID,
+		Email:       user.Email,
+		PhoneNumber: user.PhoneNumber,
+	}
+
+	token, err := jwt.Sign(jwt.HS256, sharedKey, myClaims, jwt.MaxAge(30*time.Minute))
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"token": string(token),
 	})
-	if err != nil {
-		c.JSON(401, gin.H{"error": "Token is invalid"})
-		return
-	}
-
-	claims, ok := token.Claims.(jwt.MapClaims)
-	if !ok || !token.Valid {
-		c.JSON(401, gin.H{"error": "Token is invalid"})
-		return
-	}
-
-	userID := uint(claims["userID"].(float64))
-	err = client.Del(fmt.Sprintf("token:%d", userID)).Err()
-	if err != nil {
-		c.JSON(500, gin.H{"error": "Error deleting token"})
-		return
-	}
-
-	c.JSON(200, gin.H{"message": "Token deleted"})
 }
 
-func (api *API) getuser(c *gin.Context) {
-	authorization := c.GetHeader("Authorization")
-	if authorization == "" || !strings.HasPrefix(authorization, "Bearer ") {
-		c.JSON(401, gin.H{"error": "Authorization header is required"})
+func signout(c *gin.Context) {
+	auth := c.Request.Header.Get("Authorization")
+	verifiedToken, err := jwt.Verify(jwt.HS256, sharedKey, []byte(auth))
+	if err != nil {
+		c.JSON(401, gin.H{
+			"error": err.Error(),
+		})
 		return
 	}
 
-	tokenString := strings.TrimPrefix(authorization, "Bearer ")
-	token, err := jwt.Parse(tokenString, func(token *jwt.Token) (interface{}, error) {
-		if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
-			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
+	var claims UserClaim
+	err = verifiedToken.Claims(&claims)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	tx := db.WithContext(c)
+	err = tx.Transaction(func(tx *gorm.DB) error {
+		err := cache.Get(c, auth).Err()
+		if err != nil && err != redis.Nil {
+			return err
 		}
-		return []byte("secret"), nil
+		if err == nil {
+			return fmt.Errorf("token already signed out")
+		}
+		err = cache.Set(c, auth, true, verifiedToken.StandardClaims.Timeleft()).Err()
+		if err != nil {
+			return err
+		}
+		err = tx.Table("unauthorized_token").Create(&storage.UnauthorizedToken{
+			UserID:     claims.UserID,
+			Token:      auth,
+			Expiration: verifiedToken.StandardClaims.ExpiresAt(),
+		}).Error
+		if err != nil {
+			return err
+		}
+		err = tx.Table("unauthorized_token").Where("expiration < NOW()").Delete(&storage.UnauthorizedToken{}).Error
+		if err != nil {
+			return err
+		}
+		return nil
 	})
 	if err != nil {
-		c.JSON(401, gin.H{"error": "Token is invalid"})
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	c.JSON(200, gin.H{
+		"message": "signed out successfully",
+	})
+}
+
+func userInfo(c *gin.Context) {
+	auth := c.Request.Header.Get("Authorization")
+	if err := cache.Get(c, auth).Err(); err == nil {
+		c.JSON(401, gin.H{
+			"error": "token signed out",
+		})
+		return
+	} else if err != redis.Nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	tx := db.WithContext(c)
+	var token storage.UnauthorizedToken
+	err := tx.Table("unauthorized_token").Where("token = ?", auth).Take(&token).Error
+	if err == nil {
+		cache.Set(c, auth, true, token.Expiration.Sub(time.Now()))
+		c.JSON(401, gin.H{
+			"error": "token signed out",
+		})
+		return
+	} else if err != nil && err != gorm.ErrRecordNotFound {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+	verifiedToken, err := jwt.Verify(jwt.HS256, sharedKey, []byte(auth))
+	if err != nil {
+		c.JSON(401, gin.H{
+			"error": err.Error(),
+		})
 		return
 	}
 
-	claims, ok := token.Claims.(jwt.MapClaims)
-	if !ok || !token.Valid {
-		return 0, errors.New("Cannot get claims from token")
+	var claims UserClaim
+	err = verifiedToken.Claims(&claims)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
 	}
-	userID, ok := claims["user_id"].(float64)
-	if !ok {
-		return 0, errors.New("Cannot get user ID from claims")
+
+	var user storage.User
+	if err := tx.Table("user_account").Where("user_id = ?", claims.UserID).Take(&user).Error; err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
 	}
-	return int(userID), nil
+	c.JSON(200, UserInfoResponse{
+		UserID:      user.UserID,
+		Email:       user.Email,
+		PhoneNumber: user.PhoneNumber,
+		Gender:      user.Gender,
+		FirstName:   user.FirstName,
+		LastName:    user.LastName,
+	})
 }
