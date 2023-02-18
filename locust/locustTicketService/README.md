@@ -39,13 +39,13 @@ API `body` example:
 
 ```json
 {
-  "title": 'string'
+  "title": "string"
   // transaction title,
-  "flight_serial": 'number',
+  "flight_serial": "number",
   //flight serial number
-  "offer_class": 'string'
+  "offer_class": "string"
   // flight class
-  "offer_price": 'number'
+  "offer_price": "number"
   // flight ticket price
 }
 ```
