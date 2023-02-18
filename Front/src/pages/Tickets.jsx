@@ -3,7 +3,7 @@ import {useParams} from "react-router-dom";
 import useGetAvailableTickets from "../hooks/userGetAvailableTickets";
 import Page from "../components/general/Page";
 import SearchInfo from "../components/SearchInfo";
-import {Typography} from "@mui/material";
+import {Typography, Container} from "@mui/material";
 import TicketView from "../components/TicketView";
 
 function Tickets() {
@@ -15,11 +15,20 @@ function Tickets() {
     const departureDate = searchParams.get('departureDate');
     const returnDate = searchParams.get('returnDate');
 
+    // if departureDate is not set, set it to today
+    if (!departureDate) {
+        const today = new Date();
+        const dd = String(today.getDate()).padStart(2, '0');
+        const mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+        const yyyy = today.getFullYear();
+        const todayString = yyyy + '-' + mm + '-' + dd;
+        window.location.search = `?departureDate=${todayString}`;
+    }
+
     const {availableTickets, availableTicketsStatus} = useGetAvailableTickets({
             origin: org, destination: dst, departureDate, returnDate
         }
     );
-    console.log(availableTickets, availableTicketsStatus)
 
     return (
         <Page>
@@ -27,14 +36,21 @@ function Tickets() {
             <div style={{height: '100vh'}}>
                 {availableTicketsStatus === 'success' &&
                     <>
-                        <Typography
-                            variant='h5'
-                            color='primary'
-                            sx={{margin: '10px 0 10px 0'}}
-                        >
-                            پروازهای رفت
-                        </Typography>
+                        <Container>
+                            <Typography
+                                variant='h6'
+                                color='primary'
+                                sx={{margin: '10px 0 10px 0', textAlign:'initial'}}
+                            >
+                                {
+                                    returnDate ?
+                                        'پروازهای رفت'
+                                        : 'پروازهای موجود'
+                                }
 
+                            </Typography>
+
+                        </Container>
                         {
                             availableTickets['data']['flight'].map((ticket, index) => {
                                 return <TicketView key={index} flightInfo={ticket}/>
@@ -44,17 +60,21 @@ function Tickets() {
                 }
                 {availableTicketsStatus === 'success' && returnDate &&
                     <>
-                        <Typography
-                            variant='h5'
-                            color='primary'
-                            sx={{margin: '10px 0 10px 0'}}
-                        >
-                            پروازهای برگشت
-                        </Typography>
+                        <Container>
+                            <Typography
+                                variant='h5'
+                                color='primary'
+                                sx={{margin: '10px 0 10px 0', textAlign:'initial'}}
+                            >
+                                پروازهای برگشت
+                            </Typography>
+
+
+                        </Container>
                         {
-                        availableTickets['data']['returnFlight'].map((ticket, index) => {
-                            return <TicketView key={index} flightInfo={ticket}/>
-                        })}
+                            availableTickets['data']['returnFlight'].map((ticket, index) => {
+                                return <TicketView key={index} flightInfo={ticket}/>
+                            })}
                     </>
                 }
 
