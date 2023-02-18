@@ -70,11 +70,13 @@ services:
       - REACT_APP_AUTH_PORT= 3001
       - REACT_APP_TICKET_HOST=ticket
       - REACT_APP_TICKET_PORT=3000
-    expose:
-      - 5000
-    container_name: "my-front"
+    container_name: "my-renginx"
     build:
       context: ./Front
+    ports:
+      - "8000:80"
+    depends_on:
+      - authcore
 
 
   bank:
@@ -82,15 +84,6 @@ services:
     container_name: bank
     build:
       context: ./bank
-  
-  nginx:
-    restart: unless-stopped
-    build:
-      context: ./Frontend
-    ports:
-      - "8000:80"
-    depends_on:
-      - authcore
 
 
 volumes:
