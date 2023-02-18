@@ -1,9 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const {getUserTickets} = require('../controllers/dashboardController');
-const {isAuth} = require('../middlewares/auth');
+const {dummyIsAuth} = require('../middlewares/auth');
 
 
-router.get('/tickets', isAuth, getUserTickets);
+router.get('/tickets', dummyIsAuth, getUserTickets);
 
 module.exports = router;
