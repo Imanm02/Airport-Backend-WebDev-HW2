@@ -24,6 +24,7 @@ func InitApis(r *gin.Engine, pdb *gorm.DB, rdb *redis.Client) {
 	r.POST("/signin", signin)
 	r.POST("/signout", signout)
 	r.POST("/userinfo", userInfo)
+	r.POST("/refresh", refresh)
 	db = pdb
 	cache = rdb
 }
@@ -124,21 +125,49 @@ func signin(c *gin.Context) {
 		}
 	}
 
-	myClaims := UserClaim{
+	accessToken, err := jwt.Sign(jwt.HS256, sharedKey, UserClaim{
+		IsRefresh:   false,
 		UserID:      user.UserID,
 		Email:       user.Email,
 		PhoneNumber: user.PhoneNumber,
-	}
-
-	token, err := jwt.Sign(jwt.HS256, sharedKey, myClaims, jwt.MaxAge(30*time.Minute))
+	}, jwt.MaxAge(30*time.Minute))
 	if err != nil {
 		c.JSON(500, gin.H{
 			"error": err.Error(),
 		})
 		return
 	}
-	c.JSON(200, gin.H{
-		"token": string(token),
+
+	refreshToken, err := jwt.Sign(jwt.HS256, sharedKey, UserClaim{
+		IsRefresh:   true,
+		UserID:      user.UserID,
+		Email:       user.Email,
+		PhoneNumber: user.PhoneNumber,
+	}, jwt.MaxAge(30*24*time.Hour))
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	tx.Transaction(func(tx *gorm.DB) error {
+		err := tx.Table("refresh_token").Create(&storage.RefreshToken{
+			UserID:     user.UserID,
+			Token:      string(refreshToken),
+			Expiration: time.Now().Add(2 * time.Hour),
+		}).Error
+		if err != nil {
+			return err
+		}
+		cache.Set(c, string(refreshToken), "refresh", 2*time.Hour)
+		return nil
+	})
+
+	c.JSON(200, SignInResponse{
+		RefreshToken: string(refreshToken),
+		AccessToken:  string(accessToken),
+		Expiration:   time.Now().Add(30 * time.Minute),
 	})
 }
 
@@ -160,19 +189,21 @@ func signout(c *gin.Context) {
 		})
 		return
 	}
+	if claims.IsRefresh {
+		c.JSON(500, gin.H{
+			"error": "access token must be given",
+		})
+		return
+	}
 
 	tx := db.WithContext(c)
 	err = tx.Transaction(func(tx *gorm.DB) error {
-		err := cache.Get(c, auth).Err()
+		_, err := cache.Get(c, auth).Result()
 		if err != nil && err != redis.Nil {
 			return err
 		}
-		if err == nil {
-			return fmt.Errorf("token already signed out")
-		}
-		err = cache.Set(c, auth, true, verifiedToken.StandardClaims.Timeleft()).Err()
-		if err != nil {
-			return err
+		if err != redis.Nil {
+			return fmt.Errorf("access token already signed out")
 		}
 		err = tx.Table("unauthorized_token").Create(&storage.UnauthorizedToken{
 			UserID:     claims.UserID,
@@ -183,6 +214,10 @@ func signout(c *gin.Context) {
 			return err
 		}
 		err = tx.Table("unauthorized_token").Where("expiration < NOW()").Delete(&storage.UnauthorizedToken{}).Error
+		if err != nil {
+			return err
+		}
+		err = cache.Set(c, auth, "access", verifiedToken.StandardClaims.Timeleft()).Err()
 		if err != nil {
 			return err
 		}
@@ -199,34 +234,9 @@ func signout(c *gin.Context) {
 	})
 }
 
-func userInfo(c *gin.Context) {
+func checkAccessToken(c *gin.Context, tx *gorm.DB) (userID int64, err error) {
 	auth := c.Request.Header.Get("Authorization")
-	if err := cache.Get(c, auth).Err(); err == nil {
-		c.JSON(401, gin.H{
-			"error": "token signed out",
-		})
-		return
-	} else if err != redis.Nil {
-		c.JSON(500, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
-	tx := db.WithContext(c)
-	var token storage.UnauthorizedToken
-	err := tx.Table("unauthorized_token").Where("token = ?", auth).Take(&token).Error
-	if err == nil {
-		cache.Set(c, auth, true, token.Expiration.Sub(time.Now()))
-		c.JSON(401, gin.H{
-			"error": "token signed out",
-		})
-		return
-	} else if err != nil && err != gorm.ErrRecordNotFound {
-		c.JSON(500, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
+
 	verifiedToken, err := jwt.Verify(jwt.HS256, sharedKey, []byte(auth))
 	if err != nil {
 		c.JSON(401, gin.H{
@@ -244,8 +254,55 @@ func userInfo(c *gin.Context) {
 		return
 	}
 
+	if claims.IsRefresh {
+		err = fmt.Errorf("access token must be given")
+		c.JSON(401, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	err = cache.Get(c, auth).Err()
+	if err == nil {
+		err = fmt.Errorf("access token signed out")
+		c.JSON(401, gin.H{
+			"error": err.Error(),
+		})
+		return
+	} else if err != nil && err != redis.Nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	var accessToken storage.UnauthorizedToken
+	err = tx.Table("unauthorized_token").Where("token = ?", auth).Take(&accessToken).Error
+	if err == nil {
+		cache.Set(c, auth, "access", accessToken.Expiration.Sub(time.Now()))
+		err = fmt.Errorf("token signed out")
+		c.JSON(401, gin.H{
+			"error": err.Error(),
+		})
+		return
+	} else if err != nil && err != gorm.ErrRecordNotFound {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	return claims.UserID, nil
+}
+
+func userInfo(c *gin.Context) {
+	tx := db.WithContext(c)
+	userID, err := checkAccessToken(c, tx)
+	if err != nil {
+		return
+	}
 	var user storage.User
-	if err := tx.Table("user_account").Where("user_id = ?", claims.UserID).Take(&user).Error; err != nil {
+	if err := tx.Table("user_account").Where("user_id = ?", userID).Take(&user).Error; err != nil {
 		c.JSON(500, gin.H{
 			"error": err.Error(),
 		})
@@ -258,5 +315,100 @@ func userInfo(c *gin.Context) {
 		Gender:      user.Gender,
 		FirstName:   user.FirstName,
 		LastName:    user.LastName,
+	})
+}
+
+func refresh(c *gin.Context) {
+	auth := c.Request.Header.Get("Authorization")
+
+	verifiedToken, err := jwt.Verify(jwt.HS256, sharedKey, []byte(auth))
+	if err != nil {
+		c.JSON(401, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	var claims UserClaim
+	err = verifiedToken.Claims(&claims)
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	if !claims.IsRefresh {
+		c.JSON(401, gin.H{
+			"error": "refresh token must be given",
+		})
+		return
+	}
+
+	tx := db.WithContext(c)
+
+	err = cache.Get(c, auth).Err()
+	if err != nil && err != redis.Nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	} else if err == redis.Nil {
+		var refreshToken storage.RefreshToken
+		err = tx.Table("refresh_token").Where("token = ?", auth).Take(&refreshToken).Error
+		if err != nil && err != gorm.ErrRecordNotFound {
+			c.JSON(500, gin.H{
+				"error": err.Error(),
+			})
+			return
+		}
+		if err == gorm.ErrRecordNotFound {
+			c.JSON(400, gin.H{
+				"error": fmt.Errorf("refresh token invalid"),
+			})
+			return
+		}
+		if refreshToken.Expiration.Before(time.Now()) {
+			err = tx.Table("refresh_token").Delete(&refreshToken).Error
+			if err != nil {
+				c.JSON(500, gin.H{
+					"error": err.Error(),
+				})
+				return
+			}
+			c.JSON(400, gin.H{
+				"error": fmt.Errorf("refresh token expired"),
+			})
+			return
+		}
+	}
+
+	accessToken, err := jwt.Sign(jwt.HS256, sharedKey, UserClaim{
+		IsRefresh:   false,
+		UserID:      claims.UserID,
+		Email:       claims.Email,
+		PhoneNumber: claims.PhoneNumber,
+	}, jwt.MaxAge(30*time.Minute))
+	if err != nil {
+		c.JSON(500, gin.H{
+			"error": err.Error(),
+		})
+		return
+	}
+
+	tx.Transaction(func(tx *gorm.DB) error {
+		cache.Set(c, auth, "refresh", 2*time.Hour)
+		err := tx.Table("refresh_token").Where("token = ?", auth).Updates(&storage.RefreshToken{
+			Expiration: time.Now().Add(2 * time.Hour),
+		}).Error
+		if err != nil {
+			return err
+		}
+		return nil
+	})
+
+	c.JSON(200, RefreshResponse{
+		AccessToken: string(accessToken),
+		Expiration:  time.Now().Add(2 * time.Hour),
 	})
 }

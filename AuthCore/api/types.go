@@ -1,5 +1,7 @@
 package api
 
+import "time"
+
 type SignUpRequest struct {
 	Email       string `json:"email"`
 	PhoneNumber string `json:"phone_number"`
@@ -15,6 +17,21 @@ type SignInRequest struct {
 	Password    string `json:"password"`
 }
 
+type SignInResponse struct {
+	RefreshToken string    `json:"refresh_token"`
+	AccessToken  string    `json:"access_token"`
+	Expiration   time.Time `json:"expiration"`
+}
+
+type RefreshRequest struct {
+	RefreshToken string `json:"refresh_token"`
+}
+
+type RefreshResponse struct {
+	AccessToken string    `json:"access_token"`
+	Expiration  time.Time `json:"expiration"`
+}
+
 type UserInfoResponse struct {
 	UserID      int64  `json:"user_id"`
 	Email       string `json:"email"`
@@ -25,6 +42,7 @@ type UserInfoResponse struct {
 }
 
 type UserClaim struct {
+	IsRefresh   bool   `json:"is_refresh"`
 	UserID      int64  `json:"user_id"`
 	Email       string `json:"email"`
 	PhoneNumber string `json:"phone_number"`
