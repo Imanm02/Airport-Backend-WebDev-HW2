@@ -10,7 +10,8 @@ const {validationResult} = require("express-validator");
 const {where} = require("sequelize");
 
 
-router.post('/', dummyIsAuth, ...checkPostData,  async function (req, res, next) {
+router.post('/', dummyIsAuth, ...checkPostData, async function (req, res, next) {
+    console.log('hi from transaction')
     const errors = validationResult(req);
     /* send errors of middlewares */
     if (!errors.isEmpty()) {
@@ -34,9 +35,8 @@ router.post('/', dummyIsAuth, ...checkPostData,  async function (req, res, next)
         }
 
 
-
         const response = await axios(options);
-        const flight = await Flight.findOne({ where: { flight_id: postData["flight_id"] } });
+        const flight = await Flight.findOne({where: {flight_id: postData["flight_id"]}});
         // save the log of uncompleted transaction with the related user data (id, first name, last name)
         const buyer = req.user;
         const new_purchase = await Purchase.create({
@@ -47,13 +47,17 @@ router.post('/', dummyIsAuth, ...checkPostData,  async function (req, res, next)
             flight_serial: flight.flight_serial,
             offer_price: postData["offer_price"],
             offer_class: postData["offer_class"],
-            transaction_id: response.data.id
+            transaction_id: response.data.id,
+            transaction_result: 0,
         });
 
         // redirect to bank payment page
-        res.redirect(process.env.BANK_URL + "/payment/" + response.data.id);
+        // res.redirect('http://' + process.env.BANK_URL + "/payment/" + response.data.id);
 
-
+        res.send({
+            message: "transaction created successfully",
+            redirect_url: 'http://' + process.env.BANK_URL + "/payment/" + response.data.id,
+        });
 
         // console.log(response.data);
     } catch (e) {

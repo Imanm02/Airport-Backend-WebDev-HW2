@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const Purchase = require('../models/purchase')
-// const Purchase = require('../db').Purchase
-// const Purchase = require('../db').Purchase
 
 router.get('/:transactionId/:resultId', async function (req, res, next) {
     // if result != 1

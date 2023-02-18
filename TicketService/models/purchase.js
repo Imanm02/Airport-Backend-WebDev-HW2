@@ -47,11 +47,11 @@ const Purchase = sequelize.define('purchase', {
     transaction_result: { // ok
         type: DataTypes.INTEGER,
         allowNull: true,
-        // default: false
+        default: 0
     }
 }, {
     freezeTableName: true,
-    timestamps: true
+    timestamps: false
 });
 
 Purchase.sync()
