@@ -17,3 +17,9 @@ type UnauthorizedToken struct {
 	Token      string
 	Expiration time.Time
 }
+
+type RefreshToken struct {
+	UserID     int64
+	Token      string
+	Expiration time.Time
+}
