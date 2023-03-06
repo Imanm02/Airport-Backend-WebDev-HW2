@@ -21,7 +21,6 @@ const middlewares = [
             if (Date.parse(value) < Date.parse(req.query.departureDate)) {
                 throw new Error("return date before depart date");
             }
-            console.log("return date after depart date");
             return true;
         }).bail(),
 ];

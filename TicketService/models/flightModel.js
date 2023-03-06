@@ -46,7 +46,7 @@ const Flight = sequelize.define('flight', {
     }
 }, {
     freezeTableName: true,
-    timestamps: true
+    timestamps: false
 });
 
 Flight.sync()

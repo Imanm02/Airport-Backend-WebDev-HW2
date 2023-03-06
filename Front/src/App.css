@@ -1,0 +1,198 @@
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height: 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: calc(10px + 2vmin);
+    color: white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+
+.tether-element > div > div {
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    box-shadow: 0 3px 10px #dbdbdb;
+    margin: auto;
+    padding: 10px;
+    text-align: center;
+    width: 300px;
+}
+
+.tether-element > div > div * {
+    box-sizing: border-box;
+}
+
+.tether-element > div > div > div > div:nth-child(3)::after, .tether-element > div > div > div > div:nth-child(2)::after, .tether-element .month-selector > div:nth-child(2)::after {
+    clear: both;
+    content: "";
+    display: block;
+}
+
+.tether-element > div > div > div > div:nth-child(1) {
+    font-weight: 700;
+    height: 42px;
+    margin-bottom: 10px;
+}
+
+.tether-element > div > div > div > div:nth-child(1) > button {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: 1px solid #f7f7f7;
+    border-radius: 3px;
+    cursor: pointer;
+    height: 32px;
+    line-height: 30px;
+    margin: 5px 0;
+    text-align: center;
+    width: 36px;
+}
+
+.tether-element > div > div > div > div:nth-child(1) > button:hover {
+    background-color: #f2f2f2;
+}
+
+.tether-element > div > div > div > div:nth-child(1) > span {
+    line-height: 35px;
+}
+
+.tether-element > div > div > div > div:nth-child(1) svg {
+    width: 10px;
+}
+
+.tether-element > div > div > div > div:nth-child(1) > button:nth-child(2) {
+    float: right;
+}
+
+.tether-element > div > div > div > div:nth-child(1) > button:nth-child(3) {
+    float: left;
+}
+
+.tether-element > div > div > div > div:nth-child(1) > button:nth-child(1) {
+    border: 1px solid #f7f7f7;
+    display: inline-block;
+    font-size: 1em;
+    font-weight: 400;
+    height: 32px;
+    line-height: 32px;
+    margin: 5px 0;
+    text-align: center;
+    width: 120px;
+}
+
+.tether-element > div > div > div > div:nth-child(3) > div {
+    float: right;
+    width: 14.2857%;
+}
+
+.tether-element > div > div > div > div:nth-child(3) > div button {
+    background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
+    border: medium none;
+    border-radius: 3px;
+    cursor: pointer;
+    height: 36px;
+    outline: medium none;
+    width: 100%;
+}
+
+.tether-element > div > div > div > div:nth-child(3) > div button:hover {
+    background-color: #eef;
+}
+
+.tether-element > div > div > div > div:nth-child(3) > div button[disabled] {
+    background-color: #ebebeb;
+    color: #aaa;
+    cursor: not-allowed;
+}
+
+.tether-element > div > div > div > div:nth-child(3) > div:not(.undefined) button {
+    opacity: 0.5;
+}
+
+.tether-element > div > div > div > div:nth-child(2) {
+    border-bottom: 1px solid #eee;
+    display: flex;
+    margin-bottom: 5px;
+    padding-bottom: 5px;
+    width: 100%;
+}
+
+.tether-element > div > div > div > div:nth-child(2) > div {
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.tether-element .month-selector > div:nth-child(2) {
+    clear: both;
+    width: 100%;
+    display: inline-table;
+}
+
+.tether-element .month-selector > div:nth-child(2) button {
+    background: #fff none repeat scroll 0 0;
+    border: 1px solid #f9f9f9;
+    cursor: pointer;
+    float: right;
+    font-size: 1em;
+    height: 25%;
+    outline: medium none;
+    padding: 10px 0;
+    width: 33.3333%;
+}
+
+.tether-element .month-selector > div:nth-child(2) > div.undefined > button {
+    background-color: #337ab7;
+    color: #fff;
+}
+
+.tether-element .month-selector > div:nth-child(2) button:hover {
+    background: #eee none repeat scroll 0 0;
+    cursor: pointer;
+}
+
+.datePickerContainer {
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+.dataPickerContainer div {
+    width: 100px;
+}
+
+.datePickerContainer input {
+    height: 48px;
+    margin-top: 0.3rem;
+    margin-left: 0.5rem;
+    max-width: 50%;
+}
+
