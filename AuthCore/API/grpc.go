@@ -13,6 +13,6 @@ type GrpcServer struct {
 }
 
 func (s *GrpcServer) CheckToken(ctx context.Context, t *proto.Token) (*proto.UserData, error) {
-	t.Token
+	//t.Token
 	return nil, status.Errorf(codes.Unimplemented, "method CheckToken not implemented")
 }
