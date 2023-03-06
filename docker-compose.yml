@@ -32,7 +32,7 @@ services:
       - REDIS_REPLICATION_MODE=master
 
   authcore:
-    restart: on-failure
+    restart: unless-stopped
     environment:
       - REDIS_URL=redis:6379
       - REDIS_DB=1
@@ -46,10 +46,10 @@ services:
       - postgres1
 
   ticket:
-    restart: on-failure
+    restart: unless-stopped
     environment:
       - HOST=0.0.0.0
-      - PORT=3000
+      - PORT=3000   # this can be defined in the dockerfile instead of here.
       - PG_USER=postgres
       - PG_PASSWORD=mypassword
       - PG_DATABASE=ticketservice
@@ -63,20 +63,27 @@ services:
       - postgres1
       - authcore
 
-  bank:
-    restart: on-failure
-    container_name: bank
+  front:
+    restart: unless-stopped
+    environment:
+      - REACT_APP_AUTH_HOST=authcore
+      - REACT_APP_AUTH_PORT= 3001
+      - REACT_APP_TICKET_HOST=ticket
+      - REACT_APP_TICKET_PORT=3000
+    container_name: "my-renginx"
     build:
-      context: ./bank
-  
-  nginx:
-    restart: on-failure
-    build:
-      context: ./Frontend
+      context: ./Front
     ports:
       - "8000:80"
     depends_on:
       - authcore
+
+
+  bank:
+    restart: unless-stopped
+    container_name: bank
+    build:
+      context: ./bank
 
 
 volumes:
