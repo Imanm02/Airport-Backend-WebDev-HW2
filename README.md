@@ -1,6 +1,5 @@
 # HW2-Backend
 Web Development Course - HW2
-Backend Homework
 
 # Maintainers
 - [Arash Yadegari](https://github.com/Arash1381-y)
