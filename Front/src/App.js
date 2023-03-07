@@ -6,7 +6,7 @@ import createCache from "@emotion/cache";
 import {prefixer} from "stylis";
 import {CacheProvider} from "@emotion/react";
 import LandingPage from "./pages/LandingPage";
-import {Route, Routes} from "react-router-dom";
+import {Route} from "react-router-dom";
 import {Helmet} from "react-helmet";
 import Signup from "./pages/Signup";
 import {ToastContainer} from "react-toastify";
@@ -15,6 +15,7 @@ import LoginContextProvider from "./context/LoginContextProvider";
 import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Tickets from "./pages/Tickets";
+import AllRoutes from "./pages/AllRoutes";
 
 
 const cacheRtl = createCache({
@@ -78,13 +79,7 @@ function App() {
                 <CacheProvider value={cacheRtl}>
                     <ThemeProvider theme={theme}>
                         <LoginContextProvider>
-                            <Routes>
-                                <Route path="/" element={<LandingPage/>}/>
-                                <Route path="/signup" element={<Signup/>}/>
-                                <Route path="/login" element={<Login/>}/>
-                                <Route path="/tickets/:origin_destination" element={<Tickets/>}/>
-                                <Route path="*" element={<NotFound/>}/>
-                            </Routes>
+                            <AllRoutes/>
                         </LoginContextProvider>
                     </ThemeProvider>
                 </CacheProvider>
