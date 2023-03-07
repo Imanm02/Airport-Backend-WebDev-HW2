@@ -6,16 +6,16 @@ import {useSetUserLoginStatus} from "./useSetUserLoginStatus";
 
 export default function useSignup() {
     const navigate = useNavigate();
-    const {setIsRegistered, setAccessToken} = useSetUserLoginStatus()
+    // const {setIsRegistered, setAccessToken} = useSetUserLoginStatus()
 
     const mutation = useMutation(
          postUser,
         {
             onSuccess: (data) => {
-                localStorage.setItem("refresh_token", data.refreshToken)
-                setAccessToken(data.accessToken)
-                setIsRegistered(true);
-                navigate("/");
+                // localStorage.setItem("refresh_token", data.refreshToken)
+                // setAccessToken(data.accessToken)
+                // setIsRegistered(true);
+                navigate("/login");
             },
             onError: (data) => {
                 console.log('it will be all right')
