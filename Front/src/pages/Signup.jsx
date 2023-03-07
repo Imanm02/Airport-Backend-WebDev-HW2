@@ -47,6 +47,7 @@ function Signup() {
             onSubmit: (values) => {
                 console.log(values)
                 const user = {
+                    // posting to backend
                     firstName: values.firstName,
                     lastName: values.lastName,
                     email: values.email,
