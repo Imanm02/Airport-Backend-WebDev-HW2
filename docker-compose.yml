@@ -16,6 +16,22 @@ services:
         protocol: tcp
         mode: host
 
+  postgres:
+    image: mypostgres
+    container_name: "my-postgres2"
+    restart: unless-stopped
+    environment:
+      - POSTGRES_USER=airport
+      - POSTGRES_PASSWORD=airport
+      - POSTGRES_DB=airport
+    volumes:
+      - postgres_data1:/var/lib/postgresql/data
+    ports:
+      - target: 5432
+        published: 5433
+        protocol: tcp
+        mode: host
+
   redis:
     image: redis
     container_name: "my-redis"
@@ -43,7 +59,7 @@ services:
       context: ./AuthCore
     depends_on:
       - redis
-      - postgres1
+      - postgres
 
   ticket:
     restart: unless-stopped
