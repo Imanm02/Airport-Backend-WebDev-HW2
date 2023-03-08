@@ -1,6 +1,7 @@
 package api
 
 import (
+	"context"
 	"encoding/base64"
 	"fmt"
 	"regexp"
@@ -17,19 +18,19 @@ import (
 
 var db *gorm.DB
 var cache *redis.Client
-var sharedKey = []byte("sercrethatmaycontainch@r$32chars")
+var sharedKey = []byte("iamasadlittleguyinsadlittleplace")
 
 func InitApis(r *gin.Engine, pdb *gorm.DB, rdb *redis.Client) {
-	r.POST("/signup", signup)
-	r.POST("/signin", signin)
-	r.POST("/signout", signout)
-	r.POST("/userinfo", userInfo)
+	r.POST("/signup", signupHTTP)
+	r.POST("/signin", signinHTTP)
+	r.POST("/signout", signoutHTTP)
+	r.POST("/userinfo", userInfoHTTP)
 	r.POST("/refresh", refresh)
 	db = pdb
 	cache = rdb
 }
 
-func signup(c *gin.Context) {
+func signupHTTP(c *gin.Context) {
 	var req SignUpRequest
 	err := c.BindJSON(&req)
 	if err != nil {
@@ -38,28 +39,37 @@ func signup(c *gin.Context) {
 		})
 		return
 	}
-	if req.Gender != "M" && req.Gender != "F" {
+	resp, err := signup(c, &req)
+	if err != nil {
+		if err.Error() == "internal error" {
+			c.JSON(500, gin.H{
+				"error": err.Error(),
+			})
+			return
+		}
 		c.JSON(400, gin.H{
-			"error": "gender invalid",
+			"error": err.Error(),
 		})
+		return
+	}
+	c.JSON(200, resp)
+}
+
+func signup(c context.Context, req *SignUpRequest) (resp UserInfoResponse, err error) {
+	if req.Gender != "M" && req.Gender != "F" {
+		err = fmt.Errorf("gender invalid")
 		return
 	}
 	if match, _ := regexp.MatchString("\\d{11}", req.PhoneNumber); !match {
-		c.JSON(400, gin.H{
-			"error": "phone number invalid " + req.PhoneNumber,
-		})
+		err = fmt.Errorf("phone number invalid %s", req.PhoneNumber)
 		return
 	}
 	if match, _ := regexp.MatchString("[-a-zA-Z0-9_\\.]+@\\w+\\.com", req.Email); !match {
-		c.JSON(400, gin.H{
-			"error": "email invalid",
-		})
+		err = fmt.Errorf("email invalid")
 		return
 	}
 	if len(req.Password) < 4 {
-		c.JSON(400, gin.H{
-			"error": "password too short",
-		})
+		err = fmt.Errorf("password too short")
 		return
 	}
 	h := sha256.New()
@@ -73,23 +83,21 @@ func signup(c *gin.Context) {
 		PasswordHash: base64.URLEncoding.EncodeToString(h.Sum(nil)),
 	}
 	tx := db.WithContext(c)
-	if err := tx.Table("user_account").Create(&user).Error; err != nil {
-		c.JSON(500, gin.H{
-			"error": err.Error(),
-		})
+	if err = tx.Table("user_account").Create(&user).Error; err != nil {
+		err = fmt.Errorf("internal error")
 		return
 	}
-	c.JSON(200, UserInfoResponse{
+	return UserInfoResponse{
 		UserID:      user.UserID,
 		Email:       user.Email,
 		PhoneNumber: user.PhoneNumber,
 		Gender:      user.Gender,
 		FirstName:   user.FirstName,
 		LastName:    user.LastName,
-	})
+	}, nil
 }
 
-func signin(c *gin.Context) {
+func signinHTTP(c *gin.Context) {
 	var req SignInRequest
 	err := c.BindJSON(&req)
 	if err != nil {
@@ -98,10 +106,31 @@ func signin(c *gin.Context) {
 		})
 		return
 	}
-	if req.Email == "" && req.PhoneNumber == "" {
+	resp, err := signin(c, &req)
+	if err != nil {
+		if err.Error() == "internal error" {
+			c.JSON(500, gin.H{
+				"error": err.Error(),
+			})
+			return
+		}
+		if err.Error() == "unauthorized" {
+			c.JSON(401, gin.H{
+				"error": err.Error(),
+			})
+			return
+		}
 		c.JSON(400, gin.H{
-			"error": "incomplete request",
+			"error": err.Error(),
 		})
+		return
+	}
+	c.JSON(200, resp)
+}
+
+func signin(c context.Context, req *SignInRequest) (resp SignInResponse, err error) {
+	if req.Email == "" && req.PhoneNumber == "" {
+		err = fmt.Errorf("incomplete request")
 		return
 	}
 	h := sha256.New()
@@ -110,17 +139,13 @@ func signin(c *gin.Context) {
 	var user storage.User
 	tx := db.WithContext(c)
 	if req.Email != "" {
-		if err := tx.Table("user_account").Where("email = ? AND password_hash = ?", req.Email, hash).Take(&user).Error; err != nil {
-			c.JSON(401, gin.H{
-				"error": err.Error(),
-			})
+		if err = tx.Table("user_account").Where("email = ? AND password_hash = ?", req.Email, hash).Take(&user).Error; err != nil {
+			err = fmt.Errorf("unauthorized")
 			return
 		}
 	} else {
-		if err := tx.Table("user_account").Where("phone_number = ? AND password_hash = ?", req.PhoneNumber, hash).Take(&user).Error; err != nil {
-			c.JSON(401, gin.H{
-				"error": err.Error(),
-			})
+		if err = tx.Table("user_account").Where("phone_number = ? AND password_hash = ?", req.PhoneNumber, hash).Take(&user).Error; err != nil {
+			err = fmt.Errorf("unauthorized")
 			return
 		}
 	}
@@ -132,9 +157,7 @@ func signin(c *gin.Context) {
 		PhoneNumber: user.PhoneNumber,
 	}, jwt.MaxAge(30*time.Minute))
 	if err != nil {
-		c.JSON(500, gin.H{
-			"error": err.Error(),
-		})
+		err = fmt.Errorf("internal error")
 		return
 	}
 
@@ -145,13 +168,11 @@ func signin(c *gin.Context) {
 		PhoneNumber: user.PhoneNumber,
 	}, jwt.MaxAge(30*24*time.Hour))
 	if err != nil {
-		c.JSON(500, gin.H{
-			"error": err.Error(),
-		})
+		err = fmt.Errorf("internal error")
 		return
 	}
 
-	tx.Transaction(func(tx *gorm.DB) error {
+	err = tx.Transaction(func(tx *gorm.DB) error {
 		err := tx.Table("refresh_token").Create(&storage.RefreshToken{
 			UserID:     user.UserID,
 			Token:      string(refreshToken),
@@ -163,52 +184,90 @@ func signin(c *gin.Context) {
 		cache.Set(c, string(refreshToken), "refresh", 2*time.Hour)
 		return nil
 	})
+	if err != nil {
+		err = fmt.Errorf("internal error")
+		return
+	}
 
-	c.JSON(200, SignInResponse{
+	return SignInResponse{
 		RefreshToken: string(refreshToken),
 		AccessToken:  string(accessToken),
 		Expiration:   time.Now().Add(30 * time.Minute),
-	})
+	}, nil
 }
 
-func signout(c *gin.Context) {
-	auth := c.Request.Header.Get("Authorization")
+func checkAccessToken(c context.Context, tx *gorm.DB, auth string) (userID int64, expiresAt time.Time, err error) {
 	verifiedToken, err := jwt.Verify(jwt.HS256, sharedKey, []byte(auth))
 	if err != nil {
-		c.JSON(401, gin.H{
-			"error": err.Error(),
-		})
+		err = fmt.Errorf("unauthorized")
 		return
 	}
 
 	var claims UserClaim
 	err = verifiedToken.Claims(&claims)
 	if err != nil {
-		c.JSON(500, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
-	if claims.IsRefresh {
-		c.JSON(500, gin.H{
-			"error": "access token must be given",
-		})
+		err = fmt.Errorf("unauthorized")
 		return
 	}
 
+	if claims.IsRefresh {
+		err = fmt.Errorf("unauthorized")
+		return
+	}
+
+	err = cache.Get(c, auth).Err()
+	if err == nil {
+		err = fmt.Errorf("unauthorized")
+		return
+	} else if err != nil && err != redis.Nil {
+		return
+	}
+
+	var accessToken storage.UnauthorizedToken
+	err = tx.Table("unauthorized_token").Where("token = ?", auth).Take(&accessToken).Error
+	if err == nil {
+		cache.Set(c, auth, "access", accessToken.Expiration.Sub(time.Now()))
+		err = fmt.Errorf("unauthorized")
+		return
+	} else if err != nil && err != gorm.ErrRecordNotFound {
+		return
+	}
+
+	return claims.UserID, verifiedToken.StandardClaims.ExpiresAt(), nil
+}
+
+func signoutHTTP(c *gin.Context) {
+	auth := c.Request.Header.Get("Authorization")
+	err := signout(c, auth)
+	if err != nil {
+		if err.Error() == "unauthorized" {
+			c.JSON(401, gin.H{
+				"error": "unauthorized",
+			})
+		} else {
+			c.JSON(500, gin.H{
+				"error": err.Error(),
+			})
+		}
+		return
+	}
+	c.JSON(200, gin.H{
+		"message": "signed out successfully",
+	})
+}
+
+func signout(c context.Context, auth string) (err error) {
 	tx := db.WithContext(c)
+	userID, expiresAt, err := checkAccessToken(c, tx, auth)
+	if err != nil {
+		return
+	}
+
 	err = tx.Transaction(func(tx *gorm.DB) error {
-		_, err := cache.Get(c, auth).Result()
-		if err != nil && err != redis.Nil {
-			return err
-		}
-		if err != redis.Nil {
-			return fmt.Errorf("access token already signed out")
-		}
 		err = tx.Table("unauthorized_token").Create(&storage.UnauthorizedToken{
-			UserID:     claims.UserID,
+			UserID:     userID,
 			Token:      auth,
-			Expiration: verifiedToken.StandardClaims.ExpiresAt(),
+			Expiration: expiresAt,
 		}).Error
 		if err != nil {
 			return err
@@ -217,105 +276,54 @@ func signout(c *gin.Context) {
 		if err != nil {
 			return err
 		}
-		err = cache.Set(c, auth, "access", verifiedToken.StandardClaims.Timeleft()).Err()
+		err = cache.Set(c, auth, "access", expiresAt.Sub(time.Now())).Err()
 		if err != nil {
 			return err
 		}
 		return nil
 	})
 	if err != nil {
-		c.JSON(500, gin.H{
-			"error": err.Error(),
-		})
 		return
 	}
-	c.JSON(200, gin.H{
-		"message": "signed out successfully",
-	})
+	return nil
 }
 
-func checkAccessToken(c *gin.Context, tx *gorm.DB) (userID int64, err error) {
+func userInfoHTTP(c *gin.Context) {
 	auth := c.Request.Header.Get("Authorization")
-
-	verifiedToken, err := jwt.Verify(jwt.HS256, sharedKey, []byte(auth))
+	resp, err := userInfo(c, auth)
 	if err != nil {
-		c.JSON(401, gin.H{
-			"error": err.Error(),
-		})
+		if err.Error() == "unauthorized" {
+			c.JSON(401, gin.H{
+				"error": "unauthorized",
+			})
+		} else {
+			c.JSON(500, gin.H{
+				"error": err.Error(),
+			})
+		}
 		return
 	}
-
-	var claims UserClaim
-	err = verifiedToken.Claims(&claims)
-	if err != nil {
-		c.JSON(500, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
-
-	if claims.IsRefresh {
-		err = fmt.Errorf("access token must be given")
-		c.JSON(401, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
-
-	err = cache.Get(c, auth).Err()
-	if err == nil {
-		err = fmt.Errorf("access token signed out")
-		c.JSON(401, gin.H{
-			"error": err.Error(),
-		})
-		return
-	} else if err != nil && err != redis.Nil {
-		c.JSON(500, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
-
-	var accessToken storage.UnauthorizedToken
-	err = tx.Table("unauthorized_token").Where("token = ?", auth).Take(&accessToken).Error
-	if err == nil {
-		cache.Set(c, auth, "access", accessToken.Expiration.Sub(time.Now()))
-		err = fmt.Errorf("token signed out")
-		c.JSON(401, gin.H{
-			"error": err.Error(),
-		})
-		return
-	} else if err != nil && err != gorm.ErrRecordNotFound {
-		c.JSON(500, gin.H{
-			"error": err.Error(),
-		})
-		return
-	}
-
-	return claims.UserID, nil
+	c.JSON(200, resp)
 }
 
-func userInfo(c *gin.Context) {
+func userInfo(c context.Context, auth string) (resp UserInfoResponse, err error) {
 	tx := db.WithContext(c)
-	userID, err := checkAccessToken(c, tx)
+	userID, _, err := checkAccessToken(c, tx, auth)
 	if err != nil {
 		return
 	}
 	var user storage.User
-	if err := tx.Table("user_account").Where("user_id = ?", userID).Take(&user).Error; err != nil {
-		c.JSON(500, gin.H{
-			"error": err.Error(),
-		})
+	if err = tx.Table("user_account").Where("user_id = ?", userID).Take(&user).Error; err != nil {
 		return
 	}
-	c.JSON(200, UserInfoResponse{
+	return UserInfoResponse{
 		UserID:      user.UserID,
 		Email:       user.Email,
 		PhoneNumber: user.PhoneNumber,
 		Gender:      user.Gender,
 		FirstName:   user.FirstName,
 		LastName:    user.LastName,
-	})
+	}, nil
 }
 
 func refresh(c *gin.Context) {
