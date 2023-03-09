@@ -1,4 +1,4 @@
-FROM express:1.16-alpine
+FROM node:16-alpine
 WORKDIR /ticket
 COPY package*.json ./
 RUN npm install
