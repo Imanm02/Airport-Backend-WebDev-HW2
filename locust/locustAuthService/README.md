@@ -2,7 +2,7 @@
 
 ## Locust tasks
 
-#### Authentication (signin, refresh, userinfo, signout)
+#### Authentication (sign in, refresh, user info and sign out)
 
 Use for testing all Auth APIs
 
