@@ -1,0 +1,34 @@
+type_id,manufacturer,model,series
+A388,Airbus SAS,Airbus A380,A388
+B748,The Boeing Company,Boeing 747-8,B748
+B789,The Boeing Company,Boeing 787-9 Dreamliner,B789
+B78X,The Boeing Company,Boeing 787-10 Dreamliner,B78X
+A35K,Airbus SAS,Airbus A350-1000 XWB,A35K
+B788,The Boeing Company,Boeing 787-8 Dreamliner,B788
+A339,Airbus SAS,Airbus A330-900neo,A339
+A359,Airbus SAS,Airbus A350-900 XWB,A359
+A338,Airbus SAS,Airbus A330-800neo,A338
+A21N,Airbus SAS,Airbus A321neo,A21N
+B39M,The Boeing Company,Boeing 737 Max 9,B39M
+B739,The Boeing Company,Boeing 737-900,B739
+T214,Tupolev,Tupolev Tu-214,T204
+B38M,The Boeing Company,Boeing 737 Max 8,B38M
+A20N,Airbus SAS,Airbus A320neo,A20N
+B738,The Boeing Company,Boeing 737-800,B738
+B37M,The Boeing Company,Boeing 737 Max 7,B37M
+C919,Commercial Aircraft Corporation of China Ltd,Comac C919,C919
+A19N,Airbus SAS,Airbus A319neo,A19N
+BCS3,Bombardier Inc,Airbus A220-300,BCS3
+B737,The Boeing Company,Boeing 737-700,B737
+A319,Airbus SAS,Airbus A319,A319
+BCS1,Bombardier Inc,Airbus A220-100,BCS1
+B736,The Boeing Company,Boeing 737-600,B736
+E195,Embraer (Empresa Brasileira de Aeronáutica SA),Embraer E195,E195
+C40,The Boeing Company,Boeing C-40 Clipper,B737
+A318,Airbus SAS,Airbus A318,A318
+B712,The Boeing Company,Boeing 717-200,B712
+A400,Airbus SAS,Airbus A400M Atlas,A400
+E190,Embraer (Empresa Brasileira de Aeronáutica SA),Embraer E190,E190
+AJ27,Commercial Aircraft Corporation of China Ltd,Comac ARJ21 Xiangfeng,AJ27
+SU95,Sukhoi Company (JSC),Sukhoi Superjet 100,SU95
+T334,Tupolev,Tupolev Tu-334,T334

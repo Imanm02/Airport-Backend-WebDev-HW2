@@ -6,10 +6,13 @@ services:
     container_name: "my-postgres1"
     restart: unless-stopped
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: mypassword
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=mypassword
+      - POSTGRES_DB=ticketservice 
     volumes:
       - postgres_data1:/var/lib/postgresql/data
+      - ./postgresdata/ticket/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - ./postgresdata/ticket/csvs:/fakedata
     ports:
       - target: 5432
         published: 5433
@@ -58,6 +61,8 @@ services:
       - GRPC_LISTEN_ADDRESS=0.0.0.0:21901
     build:
       context: ./AuthCore
+    ports:
+      - '5000:5000'
     depends_on:
       - redis
       - postgres
@@ -71,7 +76,7 @@ services:
       - PG_PASSWORD=mypassword
       - PG_DATABASE=ticketservice
       - PG_PORT=5432
-      - PG_HOST=postgres
+      - PG_HOST=postgres1
       - BANK_URL=bank:8000
       - RECEIPT_ID=123456
     build:
@@ -84,7 +89,7 @@ services:
     restart: unless-stopped
     environment:
       - REACT_APP_AUTH_HOST=authcore
-      - REACT_APP_AUTH_PORT= 3001
+      - REACT_APP_AUTH_PORT=5000
       - REACT_APP_TICKET_HOST=ticket
       - REACT_APP_TICKET_PORT=3000
     container_name: "my-renginx"

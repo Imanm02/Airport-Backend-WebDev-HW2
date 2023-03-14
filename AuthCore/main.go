@@ -16,11 +16,11 @@ import (
 
 func main() {
 	rdb := redis.NewClient(&redis.Options{
-		Addr:     "localhost:6379",
+		Addr:     "redis:6379",
 		Password: "",
 		DB:       0,
 	})
-	dsn := "host=localhost port=5432 user=airport dbname=airport sslmode=disable password=airport"
+	dsn := "host=postgres port=5432 user=airport dbname=airport sslmode=disable password=airport"
 	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{
 		Logger: logger.Default.LogMode(logger.Info),
 	})
@@ -28,7 +28,7 @@ func main() {
 		panic("failed to connect database")
 	}
 	r := gin.Default()
-	listener, err := net.Listen("tcp", ":7312")
+	listener, err := net.Listen("tcp", ":7132")
 	if err != nil {
 		panic(err)
 	}

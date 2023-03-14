@@ -1,0 +1,1342 @@
+country_name,city_name,timezone_name
+Algeria,Adrar,Africa/Algiers
+Algeria,Algiers,Africa/Algiers
+Algeria,Annaba,Africa/Algiers
+Algeria,Batna,Africa/Algiers
+Algeria,Béjaïa,Africa/Algiers
+Algeria,Oumache,Africa/Algiers
+Algeria,Chlef,Africa/Algiers
+Algeria,Constantine,Africa/Algiers
+Algeria,Hassi Messaoud,Africa/Algiers
+Algeria,Jijel,Africa/Algiers
+Algeria,Oran,Africa/Algiers
+Algeria,Sétif,Africa/Algiers
+Algeria,Tamanrasset,Africa/Algiers
+Algeria,Tlemcen,Africa/Algiers
+Egypt,Alexandria,America/New_York
+Egypt,Asyut,Africa/Cairo
+Egypt,Aswan,Africa/Cairo
+Egypt,Cairo,Africa/Cairo
+Egypt,El Arish,Australia/Brisbane
+Egypt,El Dabaa,Africa/Cairo
+Egypt,Hurghada,Africa/Cairo
+Egypt,Luxor,Africa/Cairo
+Egypt,Marsa Alam,Africa/Cairo
+Egypt,Mersa Matruh,Africa/Cairo
+Egypt,Saint Catherine,America/Jamaica
+Egypt,Sharm El Sheikh,Africa/Cairo
+Egypt,Sohag,Africa/Cairo
+Egypt,Taba,Africa/Lagos
+Libya,Benghazi,Africa/Tripoli
+Libya,Sabha,Pacific/Fiji
+Libya,Tripoli,Africa/Tripoli
+Libya,Tajoura,Africa/Tripoli
+Morocco,Agadir,Africa/Casablanca
+Morocco,Casablanca,Africa/Casablanca
+Morocco,Fes,Africa/Casablanca
+Morocco,Marrakech,Africa/Casablanca
+Morocco,Nador,Africa/Casablanca
+Morocco,Oujda,Africa/Casablanca
+Morocco,Rabat,Africa/Casablanca
+Morocco,Tangier,Africa/Casablanca
+Morocco,Tetouan,Africa/Casablanca
+Morocco,Dakhla,Africa/El_Aaiun
+Morocco,Laayoune,Africa/El_Aaiun
+Sudan,Khartoum,Africa/Khartoum
+Sudan,Port Sudan,Africa/Khartoum
+Tunisia,Djerba,Africa/Tunis
+Tunisia,Enfidha,Africa/Tunis
+Tunisia,Monastir,Europe/Rome
+Tunisia,Sfax,Africa/Tunis
+Tunisia,Tabarka,Africa/Tunis
+Tunisia,Tozeur,Africa/Tunis
+Tunisia,Tunis,Africa/Tunis
+Benin,Cotonou,Africa/Porto-Novo
+Burkina Faso,Bobo-Dioulasso,Africa/Ouagadougou
+Burkina Faso,Ouagadougou,Africa/Ouagadougou
+Cape Verde,Boa Vista,America/Boa_Vista
+Cape Verde,Sal Island,America/New_York
+Cape Verde,"Praia, Santiago Island",Atlantic/Cape_Verde
+Cape Verde,São Vicente,America/Sao_Paulo
+Côte d'Ivoire,Abidjan,Africa/Abidjan
+The Gambia,Banjul,Africa/Banjul
+Ghana,Accra,Africa/Accra
+Ghana,Kumasi,Africa/Accra
+Ghana,Takoradi,Africa/Accra
+Ghana,Sunyani,Africa/Accra
+Ghana,Ho,Europe/London
+Ghana,Wa,America/Los_Angeles
+Ghana,Tamale,Africa/Accra
+Guinea,Conakry,Africa/Conakry
+Guinea-Bissau,Bissau,Africa/Bissau
+Guinea-Bissau,Bubaque,Africa/Bissau
+Liberia,Monrovia,Africa/Monrovia
+Mali,Bamako,Africa/Bamako
+Mauritania,Nouakchott,Africa/Nouakchott
+Mauritania,Nouadhibou,Africa/Nouakchott
+Mauritania,Atar,Africa/Nouakchott
+Niger,Niamey,Africa/Niamey
+Nigeria,Abuja,Africa/Lagos
+Nigeria,Calabar,Africa/Lagos
+Nigeria,"Asaba, Delta",Africa/Lagos
+Nigeria,Kano,Africa/Lagos
+Nigeria,Lagos,Africa/Lagos
+Nigeria,Port Harcourt,Africa/Lagos
+Nigeria,Enugu,Africa/Lagos
+Nigeria,Sokoto,Africa/Lagos
+"Saint Helena, Ascension and Tristan da Cunha",Saint Helena,Atlantic/St_Helena
+Senegal,Dakar,Africa/Dakar
+Sierra Leone,Freetown,Africa/Freetown
+Togo,Lomé,Africa/Lome
+Angola,Luanda,Africa/Luanda
+Angola,Lubango,Africa/Luanda
+Cameroon,Douala,Africa/Douala
+Cameroon,Yaoundé,Africa/Douala
+Central African Republic,Bangui,Africa/Bangui
+Chad,N'Djamena,Africa/Ndjamena
+Democratic Republic of the Congo,Goma,Africa/Lubumbashi
+Democratic Republic of the Congo,Kinshasa,Africa/Kinshasa
+Democratic Republic of the Congo,Kisangani,Africa/Lubumbashi
+Democratic Republic of the Congo,Lubumbashi,Africa/Lubumbashi
+Republic of the Congo,Brazzaville,Africa/Brazzaville
+Republic of the Congo,Pointe-Noire,Africa/Brazzaville
+Equatorial Guinea,Malabo,Africa/Malabo
+Gabon,Franceville,Africa/Libreville
+Gabon,Libreville,Africa/Libreville
+Gabon,Port-Gentil,Africa/Libreville
+São Tomé and Príncipe,São Tomé,Africa/Sao_Tome
+Botswana,Gaborone,Africa/Gaborone
+Botswana,Maun,Africa/Gaborone
+Botswana,Francistown,Africa/Gaborone
+Botswana,Kasane,Africa/Gaborone
+Eswatini,Manzini,Africa/Mbabane
+Lesotho,Maseru,Africa/Maseru
+Namibia,Windhoek,Africa/Windhoek
+Namibia,Walvis Bay,Africa/Windhoek
+South Africa,Cape Town,Africa/Johannesburg
+South Africa,Durban,Africa/Johannesburg
+South Africa,Johannesburg,Africa/Johannesburg
+South Africa,Nelspruit,Africa/Johannesburg
+South Africa,Bloemfontein,Africa/Johannesburg
+South Africa,East London,Africa/Johannesburg
+Burundi,Bujumbura,Africa/Bujumbura
+Comoros,Moroni,Indian/Comoro
+Djibouti,Djibouti City,Africa/Johannesburg
+Eritrea,Asmara,Africa/Asmara
+Ethiopia,Addis Ababa,Africa/Addis_Ababa
+Ethiopia,Dire Dawa,Africa/Addis_Ababa
+Kenya,Eldoret,Africa/Nairobi
+Kenya,Mombasa,Africa/Nairobi
+Kenya,Kisumu,Africa/Nairobi
+Kenya,Nairobi,Africa/Nairobi
+Madagascar,Antananarivo,Indian/Antananarivo
+Madagascar,Antsiranana,Indian/Antananarivo
+Madagascar,Mahajanga,Indian/Antananarivo
+Madagascar,Nosy Be,Indian/Antananarivo
+Madagascar,Toamasina,Indian/Antananarivo
+Madagascar,Tôlanaro,Indian/Antananarivo
+Madagascar,Toliara,Indian/Antananarivo
+Malawi,Blantyre,Africa/Blantyre
+Malawi,Lilongwe,Africa/Blantyre
+Mauritius,Plaine Magnien,Indian/Mauritius
+Mayotte,Dzaoudzi,Indian/Mayotte
+Mozambique,Maputo,Africa/Maputo
+Mozambique,Beira,Africa/Maputo
+Mozambique,Inhambane,Africa/Maputo
+Mozambique,Nampula,Africa/Maputo
+Mozambique,Pemba,Africa/Dar_es_Salaam
+Mozambique,Tete,Africa/Maputo
+Mozambique,Vilankulo,Africa/Maputo
+Réunion,Saint-Denis,Europe/Paris
+Rwanda,Kigali,Africa/Kigali
+Seychelles,Victoria,Australia/Melbourne
+Somalia,Bosaso,Africa/Mogadishu
+Somalia,Galkayo,Africa/Mogadishu
+Somalia,Garoowe,Africa/Mogadishu
+Somalia,Hargeisa,Africa/Mogadishu
+Somalia,Kismayo,Africa/Mogadishu
+Somalia,Mogadishu,Africa/Mogadishu
+South Sudan,Juba,Africa/Juba
+Tanzania,Arusha,Africa/Dar_es_Salaam
+Tanzania,Dar es Salaam,Africa/Dar_es_Salaam
+Tanzania,Hai District,Asia/Amman
+Tanzania,Mwanza,Africa/Dar_es_Salaam
+Tanzania,"Unguja, Zanzibar",Africa/Dar_es_Salaam
+Uganda,Arua,Africa/Kampala
+Uganda,Entebbe,Africa/Kampala
+Uganda,Gulu,Africa/Kampala
+Zambia,Livingstone,Africa/Lusaka
+Zambia,Lusaka,Africa/Lusaka
+Zambia,Ndola,Africa/Lusaka
+Zimbabwe,Harare,Africa/Harare
+Zimbabwe,Victoria Falls,Africa/Harare
+Zimbabwe,Bulawayo,Africa/Harare
+Anguilla,The Valley,Europe/London
+Antigua and Barbuda,Antigua,America/Antigua
+Aruba,Oranjestad,America/Aruba
+Bahamas,Nassau,America/Nassau
+Bahamas,Chub Cay,America/Nassau
+Bahamas,Exuma,America/Nassau
+Bahamas,Freeport,America/Chicago
+Bahamas,South Eleuthera,America/Nassau
+Bahamas,Marsh Harbour,America/Nassau
+Barbados,Bridgetown,America/Barbados
+British Virgin Islands,Road Town,America/Tortola
+Caribbean Netherlands,"Kralendijk, Bonaire",America/Kralendijk
+Caribbean Netherlands,"Oranjestad, Sint Eustatius",America/Kralendijk
+Caribbean Netherlands,Saba,Asia/Kuching
+Cayman Islands,Cayman Brac,America/Cayman
+Cayman Islands,Georgetown,America/Guyana
+Cuba,Camagüey,America/Havana
+Cuba,Cayo Coco,America/Havana
+Cuba,Cayo Largo del Sur,America/Havana
+Cuba,Cienfuegos,America/Havana
+Cuba,Havana,America/Havana
+Cuba,Holguín,America/Havana
+Cuba,Santa Clara,America/Los_Angeles
+Cuba,Santiago de Cuba,America/Havana
+Cuba,Varadero,America/Havana
+Curaçao,Willemstad,America/Curacao
+Dominica,Roseau,America/Chicago
+Dominican Republic,Barahona,America/Santo_Domingo
+Dominican Republic,La Romana,America/Santo_Domingo
+Dominican Republic,Punta Cana,America/Santo_Domingo
+Dominican Republic,Samana,America/Santo_Domingo
+Dominican Republic,San Felipe de Puerto Plata,America/Santo_Domingo
+Dominican Republic,Santiago de los Caballeros,America/Mazatlan
+Dominican Republic,Santo Domingo,America/Santo_Domingo
+Grenada,Grenada,America/Grenada
+Guadeloupe,Pointe-à-Pitre,America/Guadeloupe
+Haiti,Cap-Haïtien,America/Port-au-Prince
+Haiti,Port-au-Prince,America/Port-au-Prince
+Jamaica,Kingston,America/Jamaica
+Jamaica,Montego Bay,America/Jamaica
+Martinique,Fort-de-France,America/Martinique
+Montserrat,Brades,America/Montserrat
+Puerto Rico,Aguadilla,America/Puerto_Rico
+Puerto Rico,San Juan,America/Puerto_Rico
+Saint Barthélemy,Saint Jean,Europe/Paris
+Saint Kitts and Nevis,Saint Kitts,America/St_Kitts
+Saint Lucia,Vieux Fort Quarter,America/St_Lucia
+Saint Vincent and the Grenadines,Kingstown,America/St_Vincent
+Saint Vincent and the Grenadines,Canouan,America/St_Vincent
+Sint Maarten,Philipsburg,America/Lower_Princes
+Trinidad and Tobago,Port of Spain,America/Port_of_Spain
+Trinidad and Tobago,Tobago,America/Port_of_Spain
+Turks and Caicos Islands,Providenciales,America/Grand_Turk
+U.S. Virgin Islands,Saint Thomas,Europe/Paris
+U.S. Virgin Islands,Saint Croix,America/St_Thomas
+Belize,Belize City,America/Belize
+Costa Rica,Liberia,Africa/Monrovia
+Costa Rica,San José,America/Costa_Rica
+El Salvador,San Salvador,America/El_Salvador
+Guatemala,Flores,Asia/Makassar
+Guatemala,Guatemala City,America/Guatemala
+Honduras,La Ceiba,America/Tegucigalpa
+Honduras,Roatán,America/Tegucigalpa
+Honduras,San Pedro Sula,America/Tegucigalpa
+Honduras,Tegucigalpa,America/Tegucigalpa
+Honduras,Comayagua,America/Tegucigalpa
+Nicaragua,Managua,America/Managua
+Nicaragua,Bluefields,America/Managua
+Nicaragua,Corn Island,America/New_York
+Panama,Bocas del Toro,America/Panama
+Panama,"David, Chiriquí",America/Panama
+Panama,Panama City,America/Chicago
+Panama,Rio Hato,America/Panama
+Bermuda,St. George's,America/Grenada
+Canada,Abbotsford,America/Vancouver
+Canada,Calgary,America/Edmonton
+Canada,Edmonton,America/Edmonton
+Canada,Fredericton,America/Moncton
+Canada,Gander,America/St_Johns
+Canada,Halifax (Goffs),America/Halifax
+Canada,Hamilton,America/Toronto
+Canada,Kelowna,America/Vancouver
+Canada,Kitchener–Waterloo,America/Toronto
+Canada,London,Europe/London
+Canada,Moncton (Dieppe),America/Moncton
+Canada,Montreal (Dorval),America/Toronto
+Canada,Ottawa,America/Toronto
+Canada,Quebec City,Asia/Manila
+Canada,Regina,America/Regina
+Canada,Saskatoon,America/Regina
+Canada,St. John's,America/St_Johns
+Canada,Toronto (Mississauga),America/Toronto
+Canada,Vancouver (Richmond),America/Vancouver
+Canada,Victoria,Australia/Melbourne
+Canada,Whitehorse,America/Whitehorse
+Canada,Windsor,Europe/London
+Canada,Winnipeg,America/Winnipeg
+Greenland,Kangerlussuaq,America/Nuuk
+Greenland,Nuuk,America/Nuuk
+Greenland,Ilulissat,America/Nuuk
+Greenland,Narsarsuaq,America/Nuuk
+Mexico,Acapulco,America/Mexico_City
+Mexico,Aguascalientes,America/Mexico_City
+Mexico,Cancún,America/Cancun
+Mexico,Chihuahua City,Pacific/Auckland
+Mexico,Ciudad del Carmen,America/Merida
+Mexico,Cozumel,America/Cancun
+Mexico,Culiacán,America/Mazatlan
+Mexico,Durango,America/Monterrey
+Mexico,Guadalajara,America/Mexico_City
+Mexico,Hermosillo,America/Hermosillo
+Mexico,Huatulco,America/Mexico_City
+Mexico,Ixtapa,America/Mexico_City
+Mexico,León,Europe/Madrid
+Mexico,Loreto,Europe/Rome
+Mexico,Los Cabos,Europe/Madrid
+Mexico,Manzanillo,Europe/Madrid
+Mexico,Mazatlán,America/Mazatlan
+Mexico,Mérida,Europe/Madrid
+Mexico,Mexico City,America/Mexico_City
+Mexico,Monterrey,America/Monterrey
+Mexico,Morelia,America/Mexico_City
+Mexico,Oaxaca City,America/Mexico_City
+Mexico,Puebla,America/Mexico_City
+Mexico,Puerto Escondido,America/Mexico_City
+Mexico,Puerto Vallarta,America/Mexico_City
+Mexico,Querétaro City,America/Mexico_City
+Mexico,Reynosa,America/Matamoros
+Mexico,Saltillo,America/Monterrey
+Mexico,San Luis Potosí City,America/Mexico_City
+Mexico,Tampico,America/Monterrey
+Mexico,Tijuana,America/Tijuana
+Mexico,Toluca,America/Mexico_City
+Mexico,Torreón,America/Monterrey
+Mexico,Tuxtla Gutiérrez,America/Mexico_City
+Mexico,Uruapan,America/Mexico_City
+Mexico,Veracruz,America/Mexico_City
+Mexico,Villahermosa,America/Mexico_City
+Mexico,Zacatecas City,America/Mexico_City
+Saint Pierre and Miquelon,Saint-Pierre,Europe/Paris
+United States,Akron,America/New_York
+United States,Albany,Europe/Tirane
+United States,Albuquerque,America/Denver
+United States,Anchorage,America/Anchorage
+United States,Appleton,America/Chicago
+United States,Atlanta,America/New_York
+United States,Atlantic City,America/New_York
+United States,Austin (TX),America/Chicago
+United States,Baltimore,America/New_York
+United States,Bangor,America/New_York
+United States,Bellingham,America/Los_Angeles
+United States,Birmingham,Europe/London
+United States,Boise,America/Boise
+United States,Boston,America/New_York
+United States,Buffalo,America/New_York
+United States,Charlotte,America/New_York
+United States,Charleston (SC),America/New_York
+United States,Chicago,America/Chicago
+United States,Cincinnati,America/New_York
+United States,Cleveland,America/New_York
+United States,Columbus (OH),America/New_York
+United States,Dallas,America/Chicago
+United States,Dayton (OH),America/New_York
+United States,Denver,America/Denver
+United States,Des Moines (IA),America/Chicago
+United States,Detroit,America/Detroit
+United States,El Paso,America/Denver
+United States,Fairbanks,America/Anchorage
+United States,Fort Lauderdale,America/New_York
+United States,Fort Myers,America/New_York
+United States,Fresno,America/Los_Angeles
+United States,Grand Rapids,America/Detroit
+United States,Green Bay,America/Chicago
+United States,Greensboro,America/New_York
+United States,Harrisburg,America/New_York
+United States,Hartford (CT),America/New_York
+United States,Hilo,Pacific/Honolulu
+United States,Honolulu,Pacific/Honolulu
+United States,Houston,America/Chicago
+United States,Huntsville (AL),America/Chicago
+United States,Indianapolis,America/Indiana/Indianapolis
+United States,Jackson (MS),America/New_York
+United States,Jacksonville,America/New_York
+United States,Juneau,America/Chicago
+United States,Kansas City (MO),America/Chicago
+United States,Ketchikan,America/Sitka
+United States,Key West,America/New_York
+United States,Kailua-Kona,Pacific/Honolulu
+United States,Knoxville,America/New_York
+United States,Lakeland,America/New_York
+United States,Lansing,America/Detroit
+United States,Las Vegas,America/Los_Angeles
+United States,Little Rock,America/Chicago
+United States,Los Angeles,America/Los_Angeles
+United States,Louisville,America/Kentucky/Louisville
+United States,Melbourne (FL),America/New_York
+United States,Memphis,America/Chicago
+United States,Miami,America/New_York
+United States,Midland,America/Chicago
+United States,Milwaukee,America/Chicago
+United States,Minneapolis/St. Paul,America/Chicago
+United States,Myrtle Beach,America/New_York
+United States,Nashville,America/Chicago
+United States,New Orleans,America/Chicago
+United States,New York City,America/New_York
+United States,Newark,America/New_York
+United States,Newburgh,America/New_York
+United States,Norfolk (VA),America/New_York
+United States,Oakland,America/Los_Angeles
+United States,Oklahoma City,America/Chicago
+United States,Omaha,America/Chicago
+United States,Ontario,America/Toronto
+United States,Orange County,America/Los_Angeles
+United States,Orlando,America/New_York
+United States,Orlando/Sanford,America/New_York
+United States,Palm Springs,America/Los_Angeles
+United States,Panama City (FL),America/Chicago
+United States,Pensacola,America/Chicago
+United States,Philadelphia,America/New_York
+United States,Phoenix,America/Phoenix
+United States,Phoenix/Mesa,America/Phoenix
+United States,Pittsburgh,America/New_York
+United States,Portland (ME),America/New_York
+United States,Portland (OR),America/Los_Angeles
+United States,Providence,America/New_York
+United States,Racine,America/Chicago
+United States,Raleigh/Durham,America/New_York
+United States,Reno,America/Los_Angeles
+United States,Richmond (VA) (Sandston),America/New_York
+United States,Rochester (MN),America/Chicago
+United States,Rochester (NY),America/New_York
+United States,Rockford (IL),America/Chicago
+United States,Sacramento,America/Los_Angeles
+United States,Salt Lake City,America/Denver
+United States,San Antonio,America/Chicago
+United States,San Bernardino,America/Los_Angeles
+United States,San Diego,America/Los_Angeles
+United States,San Francisco,America/Los_Angeles
+United States,San Jose (CA),America/Los_Angeles
+United States,Sarasota/Bradenton,America/New_York
+United States,Savannah (GA)/Hilton Head (SC),America/Chicago
+United States,Seattle,America/Los_Angeles
+United States,Sheboygan,America/Chicago
+United States,Snohomish County (WA),America/Los_Angeles
+United States,Spokane,America/Los_Angeles
+United States,St. Louis,America/Chicago
+United States,St. Petersburg (FL),America/New_York
+United States,Syracuse,America/New_York
+United States,Tallahassee,America/New_York
+United States,Tampa,America/New_York
+United States,Tucson,America/Phoenix
+United States,Tulsa,America/Chicago
+United States,"Washington, D.C.",America/New_York
+United States,West Palm Beach,America/New_York
+United States,Wilkes-Barre/Scranton,America/New_York
+United States,Wilmington (NC),America/New_York
+Argentina,Buenos Aires,America/Argentina/Buenos_Aires
+Argentina,Bariloche,America/Argentina/Salta
+Argentina,Córdoba,Europe/Madrid
+Argentina,Mendoza,America/Argentina/Mendoza
+Argentina,Puerto Iguazú,America/Argentina/Cordoba
+Argentina,Resistencia,America/Argentina/Cordoba
+Argentina,Río Gallegos,America/Argentina/Rio_Gallegos
+Argentina,Ushuaia,America/Argentina/Ushuaia
+Bolivia,La Paz,America/La_Paz
+Bolivia,Santa Cruz de la Sierra,America/La_Paz
+Bolivia,Cochabamba,America/La_Paz
+Brazil,Aracaju,America/Maceio
+Brazil,Belém,America/Belem
+Brazil,Belo Horizonte,America/Sao_Paulo
+Brazil,Boa Vista,America/Boa_Vista
+Brazil,Brasília,America/Cuiaba
+Brazil,Campinas,America/Sao_Paulo
+Brazil,Campo Grande,America/Campo_Grande
+Brazil,Cuiabá,America/Cuiaba
+Brazil,Curitiba,America/Sao_Paulo
+Brazil,Florianópolis,America/Sao_Paulo
+Brazil,Fortaleza,America/Fortaleza
+Brazil,Foz do Iguaçu,America/Sao_Paulo
+Brazil,Goiânia,America/Sao_Paulo
+Brazil,João Pessoa,America/Fortaleza
+Brazil,Maceió,America/Maceio
+Brazil,Manaus,America/Manaus
+Brazil,Natal,America/Fortaleza
+Brazil,Petrolina,America/Recife
+Brazil,Porto Alegre,America/Sao_Paulo
+Brazil,Porto Velho,America/Porto_Velho
+Brazil,Recife,America/Recife
+Brazil,Rio Branco,America/Rio_Branco
+Brazil,Rio de Janeiro,America/Sao_Paulo
+Brazil,Salvador,America/El_Salvador
+Brazil,São Luís,America/Fortaleza
+Brazil,São Paulo,America/Sao_Paulo
+Brazil,Teresina,America/Fortaleza
+Brazil,Uberlândia,America/Sao_Paulo
+Brazil,Vitória,America/Sao_Paulo
+Chile,Antofagasta,America/Santiago
+Chile,Concepción,America/Santiago
+Chile,Puerto Montt,America/Santiago
+Chile,Punta Arenas,America/Punta_Arenas
+Chile,Santiago,America/Costa_Rica
+Colombia,Armenia,Asia/Yerevan
+Colombia,Barranquilla,America/Bogota
+Colombia,Bogotá,America/Bogota
+Colombia,Bucaramanga,America/Bogota
+Colombia,Buenaventura,Europe/Madrid
+Colombia,Cali,America/Bogota
+Colombia,Cartagena,Europe/Madrid
+Colombia,Cúcuta,America/Bogota
+Colombia,Ibagué,America/Bogota
+Colombia,Ipiales,America/Bogota
+Colombia,Florencia,Europe/Rome
+Colombia,Leticia,America/Bogota
+Colombia,Maicao,America/Bogota
+Colombia,Manizales,America/Bogota
+Colombia,Medellín,America/Bogota
+Colombia,Mitú,America/Bogota
+Colombia,Montería,America/Bogota
+Colombia,Neiva,America/Bogota
+Colombia,Pasto,America/Bogota
+Colombia,Pereira,America/Bogota
+Colombia,Popayán,America/Bogota
+Colombia,Providence Island,America/Yellowknife
+Colombia,Quibdó,America/Bogota
+Colombia,Riohacha,America/Bogota
+Colombia,San Andrés,America/Bogota
+Colombia,Tolú,America/Bogota
+Colombia,Tumaco,America/Bogota
+Colombia,Santa Marta,America/Bogota
+Colombia,Sincelejo,America/Bogota
+Colombia,Valledupar,America/Bogota
+Colombia,Villavicencio,America/Bogota
+Colombia,Yopal,America/Bogota
+Ecuador,Cuenca,Europe/Madrid
+Ecuador,Esmeraldas,America/Sao_Paulo
+Ecuador,Guayaquil,America/Guayaquil
+Ecuador,Machala,America/Guayaquil
+Ecuador,Manta,Europe/Rome
+Ecuador,Quito,America/Guayaquil
+Ecuador,Tulcán,America/Guayaquil
+Falkland Islands,Mount Pleasant,America/Chicago
+French Guiana,Cayenne,America/Cayenne
+Guyana,Georgetown,America/Guyana
+Paraguay,Asunción,America/Asuncion
+Paraguay,Ciudad del Este,America/Asuncion
+Peru,Arequipa,America/Lima
+Peru,Cusco,America/Lima
+Peru,Lima,America/Lima
+Suriname,Paramaribo,America/Paramaribo
+Uruguay,Montevideo,America/Montevideo
+Uruguay,Punta del Este,America/Montevideo
+Uruguay,Rivera,America/Montevideo
+Venezuela,Caracas,America/Caracas
+Venezuela,Maracaibo,America/Caracas
+Venezuela,Valencia,Europe/Madrid
+Kazakhstan,Aktau,Asia/Aqtau
+Kazakhstan,Aktobe,Asia/Aqtobe
+Kazakhstan,Almaty,Asia/Almaty
+Kazakhstan,Atyrau,Asia/Atyrau
+Kazakhstan,Karaganda,Asia/Almaty
+Kazakhstan,Kokshetau,Asia/Almaty
+Kazakhstan,Kostanay,Asia/Qostanay
+Kazakhstan,Kyzylorda,Asia/Qyzylorda
+Kazakhstan,Nur-Sultan,Asia/Almaty
+Kazakhstan,Oral,Asia/Oral
+Kazakhstan,Oskemen,Asia/Almaty
+Kazakhstan,Pavlodar,Asia/Almaty
+Kazakhstan,Petropavl,Asia/Almaty
+Kazakhstan,Semey,Asia/Almaty
+Kazakhstan,Shymkent,Asia/Almaty
+Kazakhstan,Taraz,Asia/Almaty
+Kyrgyzstan,Bishkek,Asia/Bishkek
+Kyrgyzstan,Issyk-Kul,Asia/Bishkek
+Kyrgyzstan,Karakol,Europe/Moscow
+Kyrgyzstan,Osh,Asia/Bishkek
+Tajikistan,Bokhtar,Asia/Dushanbe
+Tajikistan,Dushanbe,Asia/Dushanbe
+Tajikistan,Khujand,Asia/Dushanbe
+Tajikistan,Kulob,Asia/Dushanbe
+Turkmenistan,Ashgabat,Asia/Ashgabat
+Turkmenistan,Daşoguz,Asia/Ashgabat
+Turkmenistan,Mary,Asia/Ashgabat
+Turkmenistan,Turkmenbashi,Asia/Ashgabat
+Turkmenistan,Türkmenabat,Asia/Ashgabat
+Uzbekistan,Andijan,Asia/Tashkent
+Uzbekistan,Bukhara,Asia/Samarkand
+Uzbekistan,Fergana,Asia/Tashkent
+Uzbekistan,Qarshi,Asia/Samarkand
+Uzbekistan,Namangan,Asia/Tashkent
+Uzbekistan,Navoi,Asia/Samarkand
+Uzbekistan,Nukus,Asia/Samarkand
+Uzbekistan,Samarkand,Asia/Samarkand
+Uzbekistan,Tashkent,Asia/Tashkent
+Uzbekistan,Termez,Asia/Samarkand
+Uzbekistan,Urgench,Asia/Samarkand
+North Korea,Pyongyang,Asia/Pyongyang
+Japan,Akita,Asia/Tokyo
+Japan,Aomori,Asia/Tokyo
+Japan,Fukuoka,Asia/Tokyo
+Japan,Hakodate,Asia/Tokyo
+Japan,Kagoshima,Asia/Tokyo
+Japan,Komatsu,Asia/Tokyo
+Japan,Hiroshima,Asia/Tokyo
+Japan,Kitakyushu,Asia/Tokyo
+Japan,Nagasaki,Asia/Tokyo
+Japan,Naha,Asia/Tokyo
+Japan,Nagoya,Asia/Tokyo
+Japan,Niigata,Asia/Tokyo
+Japan,Ōita,Asia/Tokyo
+Japan,Okayama,Asia/Tokyo
+Japan,Osaka,Asia/Tokyo
+Japan,Sapporo,Asia/Tokyo
+Japan,Sendai,Asia/Tokyo
+Japan,Shizuoka,Asia/Tokyo
+Japan,Tokyo,Asia/Tokyo
+Mongolia,Ulaanbaatar,Asia/Ulaanbaatar
+China,Baotou,Asia/Shanghai
+China,Beihai,Asia/Shanghai
+China,Beijing,Asia/Shanghai
+China,Changchun,Asia/Shanghai
+China,Changsha,Asia/Shanghai
+China,Changzhou,Asia/Shanghai
+China,Chengdu,Asia/Shanghai
+China,Chongqing,Asia/Shanghai
+China,Dalian,Asia/Shanghai
+China,Dandong,Asia/Shanghai
+China,Datong,Asia/Shanghai
+China,Dunhuang,Asia/Shanghai
+China,Enshi City,Asia/Shanghai
+China,Fuzhou,Asia/Shanghai
+China,Ganzhou,Asia/Shanghai
+China,Guangzhou,Asia/Shanghai
+China,Guilin,Asia/Shanghai
+China,Guiyang,Asia/Shanghai
+China,Haikou,Asia/Shanghai
+China,Hangzhou,Asia/Shanghai
+China,Harbin,Asia/Shanghai
+China,Hefei,Asia/Shanghai
+China,Heihe,Asia/Shanghai
+China,Hohhot,Asia/Shanghai
+China,Huai'an,Asia/Shanghai
+China,Huangshan City,Asia/Shanghai
+China,Hulunbuir,Asia/Shanghai
+China,Jiamusi,Asia/Shanghai
+China,Jieyang,Asia/Shanghai
+China,Jinan,Asia/Shanghai
+China,Kunming,Asia/Shanghai
+China,Lanzhou,Asia/Shanghai
+China,Lhasa,Asia/Shanghai
+China,Lianyungang,Asia/Shanghai
+China,Lijiang,Asia/Shanghai
+China,Linyi,Asia/Shanghai
+China,Luoyang,Asia/Shanghai
+China,Mangshi,Asia/Shanghai
+China,Manzhouli,Asia/Shanghai
+China,Meizhou,Asia/Shanghai
+China,Mudanjiang,Asia/Shanghai
+China,Nanchang,Asia/Shanghai
+China,Nanjing,Asia/Shanghai
+China,Nanning,Asia/Shanghai
+China,Nantong,Asia/Shanghai
+China,Ningbo,Asia/Shanghai
+China,Ordos City,Asia/Shanghai
+China,Qingdao,Asia/Shanghai
+China,Qinhuangdao,Asia/Shanghai
+China,Qiqihar,Asia/Shanghai
+China,Quanzhou,Asia/Shanghai
+China,Sanya,Asia/Shanghai
+China,Shanghai,Asia/Shanghai
+China,Shenyang,Asia/Shanghai
+China,Shenzhen,Asia/Shanghai
+China,Shijiazhuang,Asia/Shanghai
+China,Taiyuan,Asia/Shanghai
+China,Tianjin,Asia/Shanghai
+China,Ulanqab,Asia/Shanghai
+China,Ürümqi,Asia/Urumqi
+China,Wanzhou,Asia/Shanghai
+China,Weihai,Asia/Shanghai
+China,Wenzhou,Asia/Shanghai
+China,Wuhan,Asia/Shanghai
+China,Wuxi,Asia/Shanghai
+China,Wuyishan,Asia/Shanghai
+China,Xiamen,Asia/Shanghai
+China,Xi'an,Asia/Shanghai
+China,Xining,Asia/Shanghai
+China,Xinzhou,Asia/Shanghai
+China,Xishuangbanna,Asia/Shanghai
+China,Xuzhou,Asia/Shanghai
+China,Yancheng,Asia/Shanghai
+China,Yangzhou,Asia/Shanghai
+China,Yanji,Asia/Shanghai
+China,Yantai,Asia/Shanghai
+China,Yichang,Asia/Shanghai
+China,Yinchuan,Asia/Shanghai
+China,Yiwu,Asia/Shanghai
+China,Yuncheng,Asia/Shanghai
+China,Zhangjiajie,Asia/Shanghai
+China,Zhanjiang,Asia/Shanghai
+China,Zhengzhou,Asia/Shanghai
+China,Zhuhai,Asia/Shanghai
+China,Zunyi,Asia/Shanghai
+Hong Kong,Hong Kong,Asia/Hong_Kong
+Macau,Macau,Asia/Macau
+Taiwan,Hualien City,Asia/Taipei
+Taiwan,Kaohsiung,Asia/Taipei
+Taiwan,Taichung,Asia/Taipei
+Taiwan,Tainan,Asia/Taipei
+Taiwan,Taipei,Asia/Taipei
+Taiwan,Taoyuan,Asia/Taipei
+South Korea,Busan,Asia/Seoul
+South Korea,Daegu,Asia/Seoul
+South Korea,Jeju,Asia/Seoul
+South Korea,Seoul,Asia/Seoul
+South Korea,Cheongju,Asia/Seoul
+South Korea,Muan,Europe/Paris
+South Korea,Yangyang,Asia/Seoul
+Bangladesh,Chittagong,Asia/Dhaka
+Bangladesh,Dhaka,Asia/Dhaka
+Bangladesh,Sylhet,Asia/Dhaka
+Bhutan,Paro,Asia/Thimphu
+India,Agartala,Asia/Kolkata
+India,Ahmedabad,Asia/Kolkata
+India,Amritsar,Asia/Kolkata
+India,Bangalore,Asia/Kolkata
+India,Bhubaneswar,Asia/Kolkata
+India,Chennai,Asia/Kolkata
+India,Coimbatore,Asia/Kolkata
+India,Delhi,Asia/Kolkata
+India,Goa,Asia/Kolkata
+India,Gaya,Asia/Kolkata
+India,Guwahati,Asia/Kolkata
+India,Hyderabad,Asia/Kolkata
+India,Imphal,Asia/Kolkata
+India,Indore,Asia/Kolkata
+India,Jaipur,Asia/Kolkata
+India,Kannur,Asia/Kolkata
+India,Kochi,Asia/Kolkata
+India,Kolkata,Asia/Kolkata
+India,Kozhikode,Asia/Kolkata
+India,Lucknow,Asia/Kolkata
+India,Madurai,Asia/Kolkata
+India,Mangalore,Asia/Kolkata
+India,Mumbai,Asia/Kolkata
+India,Nagpur,Asia/Kolkata
+India,Pune,Asia/Kolkata
+India,Ranchi,Asia/Kolkata
+India,Siliguri,Asia/Kolkata
+India,Srinagar,Asia/Kolkata
+India,Surat,Europe/Paris
+India,Thiruvananthapuram,Asia/Kolkata
+India,Tirupati,Asia/Kolkata
+India,Trichy,Asia/Kolkata
+India,Vadodara,Asia/Kolkata
+India,Varanasi,Asia/Kolkata
+India,Vijayawada,Asia/Kolkata
+India,Visakhapatnam,Asia/Kolkata
+Maldives,Malé,Indian/Maldives
+Maldives,Addu City,Indian/Maldives
+Maldives,Hanimaadhoo,Indian/Maldives
+Maldives,Maamigili,Indian/Maldives
+Maldives,Maafaru,Indian/Maldives
+Nepal,Kathmandu,Asia/Kathmandu
+Nepal,Bhairahawa,Asia/Kathmandu
+Nepal,Pokhara,Asia/Kathmandu
+Pakistan,Bahawalpur,Asia/Karachi
+Pakistan,Faisalabad,Asia/Karachi
+Pakistan,Gwadar,Asia/Karachi
+Pakistan,Islamabad,Asia/Karachi
+Pakistan,Karachi,Asia/Karachi
+Pakistan,Lahore,Asia/Karachi
+Pakistan,Multan,Asia/Karachi
+Pakistan,Peshawar,Asia/Karachi
+Pakistan,Quetta,Asia/Karachi
+Pakistan,Rahim Yar Khan,Asia/Karachi
+Pakistan,Sialkot,Asia/Karachi
+Pakistan,Turbat,Asia/Kabul
+Sri Lanka,Colombo,Asia/Colombo
+Sri Lanka,Hambantota,Asia/Colombo
+Sri Lanka,Jaffna,Asia/Colombo
+Brunei,Bandar Seri Begawan,Asia/Brunei
+Cambodia,Phnom Penh,Asia/Phnom_Penh
+Cambodia,Siem Reap,Asia/Phnom_Penh
+Cambodia,Sihanoukville,Asia/Phnom_Penh
+East Timor,Dili,Asia/Kolkata
+Indonesia,Banda Aceh,Asia/Jakarta
+Indonesia,Bandung,Asia/Jakarta
+Indonesia,Banjarmasin,Asia/Makassar
+Indonesia,Batam,Asia/Jakarta
+Indonesia,Denpasar,Asia/Makassar
+Indonesia,Jakarta,Asia/Jakarta
+Indonesia,Kupang,Asia/Makassar
+Indonesia,Makassar,Asia/Makassar
+Indonesia,Manado,Asia/Makassar
+Indonesia,Mataram,Asia/Makassar
+Indonesia,Medan,Asia/Jakarta
+Indonesia,Padang,Asia/Jakarta
+Indonesia,Palembang,Asia/Jakarta
+Indonesia,Pekanbaru,Asia/Jakarta
+Indonesia,Semarang,Asia/Jakarta
+Indonesia,Surabaya,Asia/Jakarta
+Indonesia,Surakarta,Asia/Jakarta
+Indonesia,Tarakan,Asia/Makassar
+Indonesia,Yogyakarta,Asia/Jakarta
+Laos,Luang Prabang,Asia/Vientiane
+Laos,Pakse,Asia/Vientiane
+Laos,Savannakhet,Asia/Vientiane
+Laos,Vientiane,Asia/Vientiane
+Malaysia,Alor Setar,Asia/Kuala_Lumpur
+Malaysia,Ipoh,Asia/Kuala_Lumpur
+Malaysia,Johor Bahru,Asia/Kuala_Lumpur
+Malaysia,Kota Bharu,Asia/Kuala_Lumpur
+Malaysia,Kota Kinabalu,Asia/Kuching
+Malaysia,Kuala Lumpur,Asia/Kuala_Lumpur
+Malaysia,Kuala Terengganu,Asia/Kuala_Lumpur
+Malaysia,Kuantan,Asia/Kuala_Lumpur
+Malaysia,Kuching,Asia/Kuching
+Malaysia,Langkawi,Asia/Kuala_Lumpur
+Malaysia,Penang,Asia/Kuala_Lumpur
+Myanmar (Burma),Mandalay,Asia/Yangon
+Myanmar (Burma),Yangon,Asia/Yangon
+Myanmar (Burma),Naypyidaw,Asia/Yangon
+Philippines,Batanes,Asia/Manila
+Philippines,Cagayan,Asia/Manila
+Philippines,Lapu-Lapu City,Asia/Manila
+Philippines,Angeles City,Asia/Manila
+Philippines,Davao City,Asia/Manila
+Philippines,General Santos,Asia/Manila
+Philippines,Iloilo City,Asia/Manila
+Philippines,Kalibo,Asia/Manila
+Philippines,Laoag,Asia/Manila
+Philippines,Manila,Asia/Manila
+Philippines,Panglao Island,Asia/Manila
+Philippines,Puerto Princesa,Asia/Manila
+Philippines,Olongapo,Asia/Manila
+Philippines,Zamboanga City,Asia/Manila
+Singapore,Singapore,Asia/Singapore
+Thailand,Bangkok,Asia/Bangkok
+Thailand,Chiang Mai,Asia/Bangkok
+Thailand,Chiang Rai,Asia/Bangkok
+Thailand,Rayong/Pattaya,Asia/Bangkok
+Thailand,Hat Yai,Asia/Bangkok
+Thailand,Krabi,Asia/Bangkok
+Thailand,Phuket,Asia/Bangkok
+Thailand,Surat Thani,Asia/Bangkok
+Thailand,Ko Samui,Asia/Bangkok
+Thailand,Udon Thani,Asia/Bangkok
+Vietnam,Da Nang,Asia/Ho_Chi_Minh
+Vietnam,Hanoi,Asia/Bangkok
+Vietnam,Ho Chi Minh City,Asia/Ho_Chi_Minh
+Vietnam,Can Tho,Asia/Ho_Chi_Minh
+Vietnam,Haiphong,Asia/Bangkok
+Vietnam,Huế,Asia/Ho_Chi_Minh
+Vietnam,Phu Quoc,Asia/Ho_Chi_Minh
+Vietnam,Nha Trang,Asia/Ho_Chi_Minh
+Vietnam,Quảng Nam,Asia/Ho_Chi_Minh
+Vietnam,Vân Đồn,Asia/Bangkok
+Afghanistan,Kabul,Asia/Kabul
+Afghanistan,Herat,Asia/Kabul
+Afghanistan,Kandahar,Asia/Kabul
+Afghanistan,Mazar-i-Sharif,Asia/Kabul
+Bahrain,Manama,Asia/Bahrain
+Iran,Abadan,Asia/Tehran
+Iran,Ahvaz,Asia/Tehran
+Iran,Arak,Asia/Tehran
+Iran,Ardabil,Asia/Tehran
+Iran,Asaluyeh,Asia/Tehran
+Iran,Bandar Abbas,Asia/Tehran
+Iran,Birjand,Asia/Tehran
+Iran,Bushehr,Asia/Tehran
+Iran,Gorgan,Europe/Bucharest
+Iran,Hamadan,Asia/Tehran
+Iran,Ilam,Asia/Tehran
+Iran,Isfahan,Asia/Tehran
+Iran,Kerman,Asia/Tehran
+Iran,Kermanshah,Asia/Tehran
+Iran,Kish Island,America/Vancouver
+Iran,Konarak,Asia/Tehran
+Iran,Lamerd,Asia/Tehran
+Iran,Lar,Africa/Johannesburg
+Iran,Mashhad,Asia/Tehran
+Iran,Qeshm Island,Asia/Tehran
+Iran,Rasht,Asia/Tehran
+Iran,Sari,America/Vancouver
+Iran,Shiraz,Asia/Tehran
+Iran,Tabriz,Asia/Tehran
+Iran,Tehran,Asia/Tehran
+Iran,Urmia,Asia/Tehran
+Iran,Yazd,Asia/Tehran
+Iran,Zahedan,Asia/Tehran
+Iraq,Al Najaf,Asia/Baghdad
+Iraq,Baghdad,Asia/Baghdad
+Iraq,Basra,Asia/Baghdad
+Iraq,Erbil,Asia/Baghdad
+Iraq,Mosul,Asia/Baghdad
+Iraq,Nasiriyah,Asia/Baghdad
+Iraq,Sulaymaniyah,Asia/Baghdad
+Israel,Eilat,Asia/Jerusalem
+Israel,Haifa,Asia/Jerusalem
+Israel,Tel Aviv,Asia/Jerusalem
+Jordan,Aqaba,Asia/Amman
+Jordan,Amman,Asia/Amman
+Kuwait,Kuwait City,Asia/Kuwait
+Lebanon,Beirut,Asia/Beirut
+Oman,Muscat,Asia/Muscat
+Oman,Salalah,Asia/Muscat
+Oman,Sohar,Asia/Muscat
+Qatar,Doha,Asia/Qatar
+Saudi Arabia,Abha,Asia/Riyadh
+Saudi Arabia,Al-Ahsa,Asia/Riyadh
+Saudi Arabia,Al-Jawf,Asia/Aden
+Saudi Arabia,Buraydah,Asia/Riyadh
+Saudi Arabia,Dammam,Asia/Riyadh
+Saudi Arabia,Ha'il,Asia/Riyadh
+Saudi Arabia,Jeddah,Asia/Riyadh
+Saudi Arabia,Jizan,Asia/Riyadh
+Saudi Arabia,Medina,America/Chicago
+Saudi Arabia,Najran,Asia/Riyadh
+Saudi Arabia,Riyadh,Asia/Riyadh
+Saudi Arabia,Tabuk,Asia/Riyadh
+Saudi Arabia,Ta'if,Europe/Paris
+Saudi Arabia,Yanbu,Asia/Riyadh
+Syria,Aleppo,Asia/Damascus
+Syria,Damascus,Asia/Damascus
+Syria,Latakia,Asia/Damascus
+Syria,Qamishli,Asia/Damascus
+United Arab Emirates,Abu Dhabi,Asia/Dubai
+United Arab Emirates,Al Ain,Asia/Dubai
+United Arab Emirates,Dubai,Asia/Dubai
+United Arab Emirates,Ras Al Khaimah,Asia/Dubai
+United Arab Emirates,Sharjah,Asia/Dubai
+Yemen,Aden,Asia/Aden
+Yemen,Sanaa,Asia/Aden
+Yemen,Seiyun,Asia/Aden
+England and Wales,Birmingham,Europe/London
+England and Wales,Bournemouth,Europe/London
+England and Wales,Bristol,Europe/London
+England and Wales,Cardiff,Europe/London
+England and Wales,Doncaster/Sheffield,Europe/London
+England and Wales,Middlesbrough,Europe/London
+England and Wales,Nottingham,Europe/London
+England and Wales,Exeter,Europe/London
+England and Wales,Leeds/Bradford,Europe/London
+England and Wales,Liverpool,Europe/London
+England and Wales,London,Europe/London
+England and Wales,Manchester,Europe/London
+England and Wales,Newcastle upon Tyne,Europe/London
+England and Wales,Newquay,Europe/London
+England and Wales,Norwich,Europe/London
+England and Wales,Southampton,Europe/London
+Scotland,Aberdeen,Europe/London
+Scotland,Edinburgh,Europe/London
+Scotland,Glasgow,Europe/London
+Scotland,Inverness,Europe/London
+Northern Ireland,Belfast,Europe/London
+Northern Ireland,Derry,Europe/London
+Belgium,Antwerp,Europe/Brussels
+Belgium,Brussels,Europe/Brussels
+Belgium,Liège,Europe/Brussels
+Belgium,Ostend/Bruges,Europe/Brussels
+France,Ajaccio,Europe/Paris
+France,Bastia,Europe/Paris
+France,Beauvais,Europe/Paris
+France,Bergerac,Europe/Paris
+France,Béziers,Europe/Paris
+France,Biarritz,Europe/Paris
+France,Bordeaux,Europe/Paris
+France,Brest,Europe/Paris
+France,Carcassonne,Europe/Paris
+France,Châlons-en-Champagne,Europe/Paris
+France,Chambéry,Europe/Paris
+France,Dinard,Europe/Paris
+France,Figari,Europe/Rome
+France,Grenoble,Europe/Paris
+France,Île de Ré,Europe/Paris
+France,Lille,Europe/Paris
+France,Limoges,Europe/Paris
+France,Lyon,Europe/Paris
+France,Marseille,Europe/Paris
+France,Mulhouse,Europe/Paris
+France,Nantes,Europe/Paris
+France,Nice,Europe/Paris
+France,Nîmes,Europe/Paris
+France,Paris,Europe/Paris
+France,Pau,Europe/Paris
+France,Perpignan,Europe/Paris
+France,Poitiers,Europe/Paris
+France,Rodez,Europe/Paris
+France,Saint-Étienne,Europe/Paris
+France,Strasbourg,Europe/Paris
+France,Toulon,Europe/Paris
+France,Toulouse,Europe/Paris
+France,Tours,Europe/Paris
+Gibraltar,Gibraltar,Europe/Gibraltar
+Guernsey,Alderney,Europe/Guernsey
+Guernsey,Guernsey,Europe/Guernsey
+Jersey,Jersey,Europe/Jersey
+Ireland,Cork,Europe/Dublin
+Ireland,Dublin,Europe/Dublin
+Ireland,Kerry,Europe/Dublin
+Ireland,Knock,Europe/London
+Ireland,Shannon,America/Chicago
+Isle of Man,Isle of Man,Europe/Isle_of_Man
+Luxembourg,Luxembourg City,Europe/Luxembourg
+Netherlands,Amsterdam,Europe/Amsterdam
+Netherlands,Eindhoven,Europe/Amsterdam
+Netherlands,Groningen,Europe/Amsterdam
+Netherlands,Maastricht,Europe/Amsterdam
+Netherlands,Rotterdam,Europe/Amsterdam
+Austria,Graz,Europe/Vienna
+Austria,Klagenfurt,Europe/Vienna
+Austria,Innsbruck,Europe/Vienna
+Austria,Linz,Europe/Vienna
+Austria,Salzburg,Europe/Vienna
+Austria,Vienna,Europe/Vienna
+Czech Republic,Brno,Europe/Prague
+Czech Republic,Karlovy Vary,Europe/Prague
+Czech Republic,Ostrava,Europe/Prague
+Czech Republic,Prague,Europe/Prague
+Czech Republic,Pardubice,Europe/Prague
+Germany,Baden-Baden/Karlsruhe,Europe/Berlin
+Germany,Berlin,Europe/Berlin
+Germany,Bremen,Europe/Berlin
+Germany,Cologne/Bonn,Europe/Berlin
+Germany,Dortmund,Europe/Berlin
+Germany,Düsseldorf,Europe/Berlin
+Germany,Frankfurt,Europe/Berlin
+Germany,Freiburg im Breisgau,Europe/Berlin
+Germany,Friedrichshafen,Europe/Berlin
+Germany,Hamburg,Europe/Berlin
+Germany,Hanover,Europe/Berlin
+Germany,Leipzig,Europe/Berlin
+Germany,Lübeck,Europe/Berlin
+Germany,Memmingen,Europe/Berlin
+Germany,Munich,Europe/Berlin
+Germany,Nuremberg,Europe/Berlin
+Germany,Stuttgart,Europe/Berlin
+Germany,Weeze,Europe/Berlin
+Hungary,Budapest,Europe/Budapest
+Hungary,Debrecen,Europe/Budapest
+Hungary,Hévíz,Europe/Budapest
+Hungary,Győr,Europe/Budapest
+Hungary,Pécs,Europe/Budapest
+Slovakia,Bratislava,Europe/Bratislava
+Slovakia,Košice,Europe/Bratislava
+Slovakia,Piešťany,Europe/Bratislava
+Slovakia,Poprad,Europe/Bratislava
+Slovakia,Sliač,Europe/Bratislava
+Slovakia,Žilina,Europe/Bratislava
+Switzerland,Basel,Europe/Zurich
+Switzerland,Bern,Europe/Zurich
+Switzerland,Geneva,Europe/Zurich
+Switzerland,Lugano,Europe/Zurich
+Switzerland,St. Gallen,Europe/Zurich
+Switzerland,Zürich,Europe/Zurich
+Poland,Bydgoszcz,Europe/Warsaw
+Poland,Gdańsk,Europe/Warsaw
+Poland,Katowice,Europe/Warsaw
+Poland,Kraków,Europe/Warsaw
+Poland,Lublin,Europe/Warsaw
+Poland,Łódź,Europe/Warsaw
+Poland,Poznań,Europe/Warsaw
+Poland,Rzeszów,Europe/Warsaw
+Poland,Szczecin,Europe/Warsaw
+Poland,Warsaw,Europe/Warsaw
+Poland,Wrocław,Europe/Warsaw
+Croatia,Brač,Europe/Zagreb
+Croatia,Dubrovnik,Europe/Zagreb
+Croatia,Mali Lošinj,Europe/Zagreb
+Croatia,Osijek,Europe/Zagreb
+Croatia,Pula,Europe/Zagreb
+Croatia,Rijeka,Europe/Zagreb
+Croatia,Split,Europe/Zagreb
+Croatia,Zadar,Europe/Zagreb
+Croatia,Zagreb,Europe/Zagreb
+Cyprus,Larnaca,Asia/Nicosia
+Cyprus,Paphos,Asia/Nicosia
+Cyprus,North Nicosia,America/Los_Angeles
+Greece,Athens,Europe/Athens
+Greece,Cephalonia,Europe/Athens
+Greece,Chania,Europe/Athens
+Greece,Chios,Europe/Athens
+Greece,Corfu,Europe/Athens
+Greece,Heraklion,Europe/Athens
+Greece,Kalamata,Europe/Athens
+Greece,Karpathos,Europe/Athens
+Greece,Kavala,Europe/Athens
+Greece,Kos,Asia/Qostanay
+Greece,Mykonos,Europe/Athens
+Greece,Mytilene,Europe/Athens
+Greece,Preveza,Europe/Athens
+Greece,Rhodes,Europe/Paris
+Greece,Samos,Europe/Madrid
+Greece,Santorini,Europe/Athens
+Greece,Skiathos,Europe/Athens
+Greece,Skyros,Europe/Athens
+Greece,Thessaloniki,Europe/Athens
+Greece,Volos,Europe/Athens
+Greece,Zakynthos,Europe/Athens
+Italy,Alghero,Europe/Rome
+Italy,Ancona,Europe/Rome
+Italy,Bari,Europe/Rome
+Italy,Bergamo,Europe/Rome
+Italy,Bologna,Europe/Rome
+Italy,Brescia,Europe/Rome
+Italy,Brindisi,Europe/Rome
+Italy,Cagliari,Europe/Rome
+Italy,Catania,Europe/Rome
+Italy,Cuneo,Europe/Rome
+Italy,Florence,Europe/Rome
+Italy,Genoa,Europe/Rome
+Italy,Lamezia,Europe/London
+Italy,Milan,Europe/Rome
+Italy,Naples,Europe/Rome
+Italy,Olbia,Europe/Rome
+Italy,Palermo,Europe/Rome
+Italy,Parma,Europe/Rome
+Italy,Perugia,Europe/Rome
+Italy,Pescara,Europe/Rome
+Italy,Pisa,Europe/Rome
+Italy,Rimini,Europe/Rome
+Italy,Rome,Europe/Rome
+Italy,Trapani,Europe/Rome
+Italy,Trieste,Europe/Rome
+Italy,Turin,Europe/Rome
+Italy,Venice,Europe/Rome
+Italy,Verona,Europe/Rome
+Malta,Valletta,Europe/Malta
+Portugal,Beja,Europe/Lisbon
+Portugal,Faro,Europe/Lisbon
+Portugal,Funchal,Atlantic/Madeira
+Portugal,Porto Santo Island,Atlantic/Madeira
+Portugal,Lisbon,Europe/Lisbon
+Portugal,Porto,Europe/Lisbon
+Portugal,Ponta Delgada,Atlantic/Azores
+Portugal,Terceira Island,Atlantic/Azores
+Slovenia,Ljubljana,Europe/Ljubljana
+Slovenia,Maribor,Europe/Ljubljana
+Slovenia,Portorož,Europe/Ljubljana
+Spain,A Coruña,Europe/Madrid
+Spain,Alicante,Europe/Madrid
+Spain,Almería,Europe/Madrid
+Spain,Asturias,Europe/Madrid
+Spain,Barcelona,Europe/Madrid
+Spain,Bilbao,Europe/Madrid
+Spain,Castellón de la Plana,Europe/Madrid
+Spain,Fuerteventura,Atlantic/Canary
+Spain,Girona,Europe/Madrid
+Spain,Gran Canaria,Atlantic/Canary
+Spain,Granada,Europe/Madrid
+Spain,Huesca,Europe/Madrid
+Spain,Ibiza,Europe/Madrid
+Spain,Jerez de la Frontera,Europe/Madrid
+Spain,La Palma,Atlantic/Canary
+Spain,Lanzarote,Atlantic/Canary
+Spain,Lleida,Europe/Madrid
+Spain,Madrid,Europe/Madrid
+Spain,Málaga,Europe/Madrid
+Spain,Menorca,Europe/Madrid
+Spain,Murcia,Europe/Madrid
+Spain,Palma de Mallorca,Europe/Madrid
+Spain,Pamplona,Europe/Madrid
+Spain,Reus,Europe/Madrid
+Spain,Santander,Europe/Madrid
+Spain,Santiago de Compostela,Europe/Madrid
+Spain,Seville,Europe/Madrid
+Spain,Tenerife,Atlantic/Canary
+Spain,Valencia,Europe/Madrid
+Spain,Valladolid,Europe/Madrid
+Spain,Vigo,Europe/Madrid
+Spain,Vitoria-Gasteiz,Europe/Madrid
+Spain,Zaragoza,Europe/Madrid
+Albania,Tirana,Europe/Tirane
+Albania,Kukes,Europe/Tirane
+Armenia,Yerevan,Asia/Yerevan
+Armenia,Gyumri,Asia/Yerevan
+Azerbaijan,Baku,Asia/Baku
+Azerbaijan,Ganja,Asia/Baku
+Azerbaijan,Nakhchivan,Asia/Baku
+Azerbaijan,Qabala,Asia/Baku
+Azerbaijan,Lankaran,Asia/Baku
+Azerbaijan,Zaqatala,Asia/Baku
+Belarus,Grodno,Europe/Minsk
+Belarus,Gomel,Europe/Minsk
+Belarus,Minsk,Europe/Minsk
+Bosnia and Herzegovina,Banja Luka,Europe/Sarajevo
+Bosnia and Herzegovina,Sarajevo,Europe/Sarajevo
+Bosnia and Herzegovina,Tuzla,Europe/Sarajevo
+Bosnia and Herzegovina,Mostar,Europe/Sarajevo
+Bulgaria,Burgas,Europe/Madrid
+Bulgaria,Plovdiv,Europe/Sofia
+Bulgaria,Sofia,Indian/Antananarivo
+Bulgaria,Varna,Europe/Sofia
+Georgia,Ambrolauri,Asia/Tbilisi
+Georgia,Batumi,Asia/Tbilisi
+Georgia,Kutaisi,Asia/Tbilisi
+Georgia,Mestia,Asia/Tbilisi
+Georgia,Natakhtari,Asia/Tbilisi
+Georgia,Sokhumi,Asia/Tbilisi
+Georgia,Tbilisi,Asia/Tbilisi
+Kosovo,Pristina,Europe/Belgrade
+Moldova,Chişinău,Europe/Chisinau
+Romania,Arad,Europe/Bucharest
+Romania,Bacau,Europe/Bucharest
+Romania,Baia Mare,Europe/Bucharest
+Romania,Bucharest,Europe/Bucharest
+Romania,Cluj-Napoca,Europe/Bucharest
+Romania,Constanța,Europe/Bucharest
+Romania,Craiova,Europe/Bucharest
+Romania,Iași,Europe/Bucharest
+Romania,Oradea,Europe/Bucharest
+Romania,Satu Mare,Europe/Bucharest
+Romania,Sibiu,Europe/Bucharest
+Romania,Suceava,Europe/Bucharest
+Romania,Târgu Mureș,Europe/Bucharest
+Romania,Timișoara,Europe/Bucharest
+Montenegro,Podgorica,Europe/Podgorica
+Montenegro,Tivat,Europe/Podgorica
+North Macedonia,Ohrid,Europe/Skopje
+North Macedonia,Skopje,Europe/Skopje
+Russia,Abakan,Asia/Krasnoyarsk
+Russia,Anadyr,Asia/Anadyr
+Russia,Anapa,Europe/Moscow
+Russia,Arkhangelsk,Europe/Moscow
+Russia,Astrakhan,Europe/Astrakhan
+Russia,Barnaul,Asia/Barnaul
+Russia,Belgorod,Europe/Moscow
+Russia,Blagoveshchensk,Asia/Yakutsk
+Russia,Bratsk,Asia/Irkutsk
+Russia,Bryansk,Europe/Moscow
+Russia,Cheboksary,Europe/Moscow
+Russia,Chelyabinsk,Asia/Yekaterinburg
+Russia,Cherepovets,Europe/Moscow
+Russia,Chita,America/Bogota
+Russia,Elista,Europe/Moscow
+Russia,Irkutsk,Asia/Irkutsk
+Russia,Grozny,Europe/Moscow
+Russia,Kaliningrad,Europe/Kaliningrad
+Russia,Kazan,Europe/Moscow
+Russia,Khabarovsk,Asia/Vladivostok
+Russia,Komsomolsk-on-Amur,Asia/Vladivostok
+Russia,Krasnodar,Europe/Moscow
+Russia,Krasnoyarsk,Asia/Krasnoyarsk
+Russia,Kursk,Europe/Moscow
+Russia,Magadan,Asia/Magadan
+Russia,Magnitogorsk,Asia/Yekaterinburg
+Russia,Makhachkala,Europe/Moscow
+Russia,Mineralnye Vody,Europe/Moscow
+Russia,Moscow,Europe/Moscow
+Russia,Murmansk,Europe/Moscow
+Russia,Nalchik,Europe/Moscow
+Russia,Nizhnevartovsk,Asia/Yekaterinburg
+Russia,Nizhnekamsk,Europe/Moscow
+Russia,Nizhny Novgorod,Europe/Moscow
+Russia,Novokuznetsk,Asia/Novokuznetsk
+Russia,Novosibirsk,Asia/Novosibirsk
+Russia,Omsk,Asia/Omsk
+Russia,Orenburg,Asia/Yekaterinburg
+Russia,Orsk,Asia/Yekaterinburg
+Russia,Perm,Asia/Yekaterinburg
+Russia,Petrozavodsk,Europe/Moscow
+Russia,Provideniya,Asia/Anadyr
+Russia,Petropavlovsk-Kamchatsky,Asia/Kamchatka
+Russia,Pskov,Europe/Moscow
+Russia,Rostov-on-Don,Europe/Moscow
+Russia,Saint Petersburg,America/New_York
+Russia,Samara,Europe/Samara
+Russia,Saratov,Europe/Saratov
+Russia,Sochi,Europe/Moscow
+Russia,Stavropol,Europe/Moscow
+Russia,Surgut,Asia/Yekaterinburg
+Russia,Syktyvkar,Europe/Moscow
+Russia,Tomsk,Asia/Tomsk
+Russia,Tyumen,Asia/Yekaterinburg
+Russia,Ulan-Ude,Asia/Irkutsk
+Russia,Ulyanovsk,Europe/Ulyanovsk
+Russia,Ufa,Europe/Berlin
+Russia,Vladivostok,Asia/Vladivostok
+Russia,Vladikavkaz,Europe/Moscow
+Russia,Volgograd,Europe/Volgograd
+Russia,Voronezh,Europe/Moscow
+Russia,Yakutsk,Asia/Yakutsk
+Russia,Yaroslavl,Europe/Moscow
+Russia,Yekaterinburg,Asia/Yekaterinburg
+Russia,Yuzhno-Sakhalinsk,Asia/Sakhalin
+Serbia,Belgrade,Europe/Belgrade
+Serbia,Niš,Europe/Belgrade
+Serbia,Kraljevo,Europe/Belgrade
+Turkey,Adana,Europe/Istanbul
+Turkey,Alanya,Europe/Istanbul
+Turkey,Ankara,Europe/Istanbul
+Turkey,Antalya,Europe/Istanbul
+Turkey,Bodrum,Europe/Istanbul
+Turkey,Bursa,Europe/Istanbul
+Turkey,Dalaman,Europe/Istanbul
+Turkey,Denizli,Europe/Istanbul
+Turkey,Diyarbakır,Europe/Istanbul
+Turkey,Elazığ,Europe/Istanbul
+Turkey,Gaziantep,Europe/Istanbul
+Turkey,Istanbul,Europe/Istanbul
+Turkey,İzmir,Europe/Istanbul
+Turkey,Kayseri,Europe/Istanbul
+Turkey,Konya,Europe/Istanbul
+Turkey,Kütahya,Europe/Istanbul
+Turkey,Malatya,Europe/Istanbul
+Turkey,Nevşehir,Europe/Istanbul
+Turkey,Samsun,Europe/Istanbul
+Turkey,Trabzon,Europe/Istanbul
+Turkey,Zonguldak,Europe/Istanbul
+Ukraine,Chernivtsi,Europe/Kyiv
+Ukraine,Dnipro,Europe/Minsk
+Ukraine,Ivano-Frankivsk,Europe/Kyiv
+Ukraine,Kharkiv,Europe/Kyiv
+Ukraine,Kryvyi Rih,Europe/Kyiv
+Ukraine,Kyiv,Europe/Kyiv
+Ukraine,Lviv,Europe/Kyiv
+Ukraine,Mykolaiv,Europe/Kyiv
+Ukraine,Odesa,Europe/Kyiv
+Ukraine,Poltava,Europe/Kyiv
+Ukraine,Simferopol,Europe/Simferopol
+Ukraine,Uzhhorod,Europe/Kyiv
+Ukraine,Zaporizhzhia,Europe/Kyiv
+Denmark,Aalborg,Europe/Copenhagen
+Denmark,Aarhus,Europe/Copenhagen
+Denmark,Billund,Europe/Copenhagen
+Denmark,Copenhagen,Europe/Copenhagen
+Estonia,Tallinn,Europe/Tallinn
+Estonia,Tartu,Europe/Tallinn
+Estonia,Pärnu,Europe/Tallinn
+Faroe Islands,Vágar,Atlantic/Faroe
+Finland,Åland,Europe/Mariehamn
+Finland,Helsinki,Europe/Helsinki
+Finland,Kittilä,Europe/Helsinki
+Finland,Kuopio,Europe/Helsinki
+Finland,Kuusamo,Europe/Helsinki
+Finland,Lappeenranta,Europe/Helsinki
+Finland,Oulu,Europe/Helsinki
+Finland,Rovaniemi,Europe/Helsinki
+Finland,Savonlinna,Europe/Helsinki
+Finland,Tampere,Europe/Helsinki
+Finland,Turku,Europe/Helsinki
+Finland,Vaasa,Europe/Helsinki
+Iceland,Akureyri,Atlantic/Reykjavik
+Iceland,Egilsstaðir,Atlantic/Reykjavik
+Iceland,Reykjavík,Atlantic/Reykjavik
+Latvia,Riga,Europe/Riga
+Latvia,Ventspils,Europe/Riga
+Lithuania,Kaunas,Europe/Vilnius
+Lithuania,Palanga,Europe/Vilnius
+Lithuania,Šiauliai,Europe/Vilnius
+Lithuania,Vilnius,Europe/Vilnius
+Norway,Ålesund,Europe/Oslo
+Norway,Bergen,Europe/Oslo
+Norway,Bodø,Europe/Oslo
+Norway,Haugesund,Europe/Oslo
+Norway,Kristiansand,Europe/Oslo
+Norway,Oslo,Europe/Oslo
+Norway,Stavanger,Europe/Oslo
+Norway,Tromsø,Europe/Oslo
+Norway,Trondheim,Europe/Oslo
+Sweden,Gothenburg,Europe/Stockholm
+Sweden,Luleå,Europe/Stockholm
+Sweden,Malmö,Europe/Stockholm
+Sweden,Norrköping,Europe/Stockholm
+Sweden,Östersund,Europe/Stockholm
+Sweden,Stockholm,Europe/Stockholm
+Sweden,Sundsvall,Europe/Stockholm
+Sweden,Umeå,Europe/Stockholm
+Sweden,Växjö,Europe/Stockholm
+Sweden,Visby,Europe/Stockholm
