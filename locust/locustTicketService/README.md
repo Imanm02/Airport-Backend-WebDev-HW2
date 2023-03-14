@@ -90,21 +90,6 @@ Use for testing `/dashboard/tickets` API
 
 ---
 
-#### Create transaction
-
-Use for testing `/ticket` API
-
-```python
-    @task(1)
-    def purchase_ticket(self):
-        self.client.post("/ticket", json={
-            "corresponding_user_id": 1,
-            "title": "buying",
-            "flight_serial": "23424",
-            "offer_price": 110,
-            "offer_class": "y"
-        })
-```
 
 ## Performance Test
 
@@ -116,7 +101,7 @@ Single user sending request with 1 to 4 seconds wait time.
 
 
 <p><img src="assets/singleUser/total_requests_per_second_single_user.png" alt="total request per second"></p>
-<p><img src="assets/singleUser/response_times_(ms)_single_user.png" alt="response times for single user"></p>
+<p><img src="assets/total_requests_per_second_auth.png" alt="response times for single user"></p>
 
 
 #### Multi User
@@ -126,8 +111,3 @@ Single user sending request with 1 to 4 seconds wait time.
 
 <p><img src="assets/multiUser/total_requests_per_second_multi_user.png"></p>
 <p><img src="assets/multiUser/response_times_(ms)_multi_user.png"></p>
-
-
-
-
-
