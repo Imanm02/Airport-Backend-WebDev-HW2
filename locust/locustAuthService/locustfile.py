@@ -4,19 +4,6 @@ class AuthCore(HttpUser):
     host = "http://localhost:5000"
     user = 'ali_sal1381@yahoo.com'
     password = 'mamali'
-	
-    # def on_start(self):
-    #     data = {
-    #         "email": self.user,
-    #         "password": self.password,
-    #         "phone_number": '09372253975',
-    #         "first_name": 'Ali',
-    #         "last_name": 'Salesi',
-    #         "gender": "M",
-    #     }
-    #     response = self.client.post("/signup", data=data)
-    #     print(data)
-    #     print(response.json())
 
     @task
     def tester(self):
