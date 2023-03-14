@@ -1,10 +1,10 @@
 # Airplane Website
 #### This is an airplane website project that provides ticket service for passengers. The project is built using the following technologies:
 
-- Backend: Express.js for ticket service, Golang for authentication, Python for Bank
-- Frontend: React
-- Database: Redis & Postgres
-- Deployment: Docker and Docker Compose
+* Backend: Express.js for ticket service, Golang for authentication, Python for Bank
+* Frontend: React.js
+* Database: Redis & Postgres
+* Deployment: Docker and Docker Compose
 
 # Installation
 #### To install the application, follow these steps:
